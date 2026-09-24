@@ -23,19 +23,20 @@ const description = 'An open model for progressive context acquisition by engine
 
         <svg
           class="mark"
-          viewBox="0 0 400 400"
+          viewBox="0 0 400 440"
           role="img"
           aria-labelledby="onion-title onion-description"
         >
           <title id="onion-title">The four Context Onion knowledge layers</title>
           <desc id="onion-description">
-            Current Task at the center, followed by System Understanding, Task Context,
-            and Organizational Context.
+            An onion-shaped diagram with Current Task at the center, followed by System Understanding,
+            Task Context, and Organizational Context.
           </desc>
           <defs>
-            <path id="organizational-path" d="M 40 200 A 160 160 0 0 1 360 200" />
-            <path id="task-path" d="M 80 200 A 120 120 0 0 1 320 200" />
-            <path id="system-path" d="M 120 200 A 80 80 0 0 1 280 200" />
+            <!-- Label arcs sit inside their ring so the text never touches the ring stroke. -->
+            <path id="organizational-path" d="M 32 220 A 168 168 0 0 1 368 220" />
+            <path id="task-path" d="M 72 260 A 128 128 0 0 1 328 260" />
+            <path id="system-path" d="M 112 300 A 88 88 0 0 1 288 300" />
             <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
               <feTurbulence
                 type="fractalNoise"
@@ -49,10 +50,10 @@ const description = 'An open model for progressive context acquisition by engine
           </defs>
 
           <g class="rings" filter="url(#hand-drawn)" aria-hidden="true">
-            <circle class="ring ring--organizational" cx="200" cy="200" r="180" />
-            <circle class="ring ring--task" cx="200" cy="200" r="140" />
-            <circle class="ring ring--system" cx="200" cy="200" r="100" />
-            <circle class="ring ring--current" cx="200" cy="200" r="60" />
+            <circle class="ring ring--organizational" cx="200" cy="220" r="190" />
+            <circle class="ring ring--task" cx="200" cy="260" r="150" />
+            <circle class="ring ring--system" cx="200" cy="300" r="110" />
+            <circle class="ring ring--current" cx="200" cy="340" r="70" />
           </g>
 
           <g class="layer-labels" aria-hidden="true">
@@ -71,7 +72,7 @@ const description = 'An open model for progressive context acquisition by engine
                 System Understanding
               </textPath>
             </text>
-            <text class="layer-label layer-label--current" x="200" y="207" text-anchor="middle">
+            <text class="layer-label layer-label--current" x="200" y="347" text-anchor="middle">
               Current Task
             </text>
           </g>
@@ -191,7 +192,7 @@ const description = 'An open model for progressive context acquisition by engine
 
   .mark {
     display: block;
-    width: min(22rem, 88vw);
+    width: min(25rem, 92vw);
     height: auto;
     margin: 3rem auto 0;
     overflow: visible;
