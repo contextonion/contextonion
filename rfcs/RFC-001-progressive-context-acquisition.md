@@ -21,7 +21,7 @@ Agents begin with the current task, acquire enough system understanding to locat
 
 The model is intentionally different from “read all relevant code first.” It gives agents a route to sufficient context without requiring costly bottom-up reconstruction of system behavior from implementation alone.
 
-`AGENTS.md` is not a Context Onion layer. It may act as a repository context router across the layers. Likewise, MCP servers, search, code intelligence, catalogs, documentation systems, retrieval systems, and verification systems are mechanisms that help acquire or evaluate context; they are not layers in the model.
+`AGENTS.md` is configured as a repository context router across four knowledge layers. Likewise, MCP servers, search, code intelligence, catalogs, documentation systems, retrieval systems, and verification systems are mechanisms that help acquire or evaluate context; they are not layers in the model.
 
 The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** in this document are to be interpreted as described by BCP 14 when, and only when, they appear in all capitals.
 

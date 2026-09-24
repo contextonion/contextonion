@@ -1,6 +1,50 @@
 ---
 const title = 'Context Onion';
 const description = 'An open model for progressive context acquisition by engineering agents.';
+const agentsExample = `# Repository Guidelines
+
+## Orientation
+- System overview: \`README.md\`
+- Architecture: \`docs/architecture.md\`
+- Domain terminology: \`docs/glossary.md\`
+
+## System-Understanding Routing
+Read the architecture and workflow documentation for the affected area before changing behavior.
+
+## Task-Context Routing
+- Application code: \`src/\`
+- Tests: \`tests/\`
+- Configuration: \`config/\`
+- Nearby patterns: inspect adjacent modules and callers.
+
+## Constraints
+- Follow existing conventions and interfaces.
+- Keep changes scoped to the requested outcome.
+- Do not commit generated output or secrets.
+
+## Organizational-Context Routing
+Apply relevant RFCs, standards, policies, and security guidance.
+
+## Verification
+Run focused tests first, then the repository's required checks.
+
+## Context-Acquisition Policy
+Start with the task. Acquire enough context for the next decision. Expand only when uncertainty remains, then verify.`;
+const escapeHtml = (value: string) =>
+  value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+const agentsExampleHighlighted = agentsExample
+  .split('\n')
+  .map((line) => {
+    const highlightedLine = escapeHtml(line).replace(
+      /`([^`]+)`/g,
+      '<span class="code-token code-token--inline">`$1`</span>',
+    );
+
+    return /^#{1,6}\s/.test(line)
+      ? `<span class="code-token code-token--heading">${highlightedLine}</span>`
+      : highlightedLine;
+  })
+  .join('\n');
 ---
 
 <!doctype html>
@@ -15,73 +59,269 @@ const description = 'An open model for progressive context acquisition by engine
   </head>
   <body>
     <main>
-      <svg
-        class="mark"
-        viewBox="0 0 400 400"
-        role="img"
-        aria-labelledby="onion-title onion-description"
-      >
-        <title id="onion-title">The four Context Onion layers</title>
-        <desc id="onion-description">
-          Current Task at the center, followed by System Understanding, Task Context,
-          and Organizational Context.
-        </desc>
-        <defs>
-          <path id="organizational-path" d="M 40 200 A 160 160 0 0 1 360 200" />
-          <path id="task-path" d="M 80 200 A 120 120 0 0 1 320 200" />
-          <path id="system-path" d="M 120 200 A 80 80 0 0 1 280 200" />
-          <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.018"
-              numOctaves="2"
-              seed="7"
-              result="noise"
-            />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" />
-          </filter>
-        </defs>
+      <section class="hero" aria-labelledby="page-title">
+        <pre class="eyebrow">Make <code>AGENTS.md</code> your repostiroy context router</pre>
+        <h1 id="page-title">Use the Context Onion model</h1>
+        <p class="lede">To help coding agents acquire context progressively.</p>
 
-        <g class="rings" filter="url(#hand-drawn)" aria-hidden="true">
-          <circle class="ring ring--organizational" cx="200" cy="200" r="180" />
-          <circle class="ring ring--task" cx="200" cy="200" r="140" />
-          <circle class="ring ring--system" cx="200" cy="200" r="100" />
-          <circle class="ring ring--current" cx="200" cy="200" r="60" />
-        </g>
+        <svg
+          class="mark"
+          viewBox="0 0 400 440"
+          role="img"
+          aria-labelledby="onion-title onion-description"
+        >
+          <title id="onion-title">The four Context Onion knowledge layers</title>
+          <desc id="onion-description">
+            An onion-shaped diagram with Current Task at the center, followed by System Understanding,
+            Task Context, and Organizational Context.
+          </desc>
+          <defs>
+            <!-- Label arcs sit inside their ring so the text never touches the ring stroke. -->
+            <path id="organizational-path" d="M 32 220 A 168 168 0 0 1 368 220" />
+            <path id="task-path" d="M 72 260 A 128 128 0 0 1 328 260" />
+            <path id="system-path" d="M 112 300 A 88 88 0 0 1 288 300" />
+            <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.018"
+                numOctaves="2"
+                seed="7"
+                result="noise"
+              />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" />
+            </filter>
+          </defs>
 
-        <g class="layer-labels" aria-hidden="true">
-          <text class="layer-label layer-label--organizational">
-            <textPath href="#organizational-path" startOffset="50%" text-anchor="middle">
+          <g class="rings" filter="url(#hand-drawn)" aria-hidden="true">
+            <circle class="ring ring--organizational" cx="200" cy="220" r="190" />
+            <circle class="ring ring--task" cx="200" cy="260" r="150" />
+            <circle class="ring ring--system" cx="200" cy="300" r="110" />
+            <circle class="ring ring--current" cx="200" cy="340" r="70" />
+          </g>
+
+          <g class="layer-labels" aria-hidden="true">
+            <text class="layer-label layer-label--organizational">
+              <textPath href="#organizational-path" startOffset="50%" text-anchor="middle">
+                Organizational Context
+              </textPath>
+            </text>
+            <text class="layer-label layer-label--task">
+              <textPath href="#task-path" startOffset="50%" text-anchor="middle">
+                Task Context
+              </textPath>
+            </text>
+            <text class="layer-label layer-label--system">
+              <textPath href="#system-path" startOffset="50%" text-anchor="middle">
+                System Understanding
+              </textPath>
+            </text>
+            <text class="layer-label layer-label--current" x="200" y="347" text-anchor="middle">
+              Current Task
+            </text>
+          </g>
+        </svg>
+      </section>
+
+      <section class="context-bridge" aria-labelledby="context-bridge-title">
+        <h2 id="context-bridge-title">Why AGENTS.md needs a routing model</h2>
+        <ol>
+          <li>
+            <h3><a href="https://agents.md/"><code>AGENTS.md</code></a> gives agents a place to start</h3>
+            <p>
+              A predictable place for repository-specific instructions, conventions, constraints, and
+              guidance.
+            </p>
+          </li>
+          <li>
+            <h3>But context still needs a structure</h3>
+            <p>
+              Without a clear acquisition model, agents can still search broadly, reconstruct system
+              behavior from code, and discover important constraints late.
+            </p>
+          </li>
+          <li>
+            <h3>Context Onion provides the routing model</h3>
+            <p class="context-route">
+              Current Task <span aria-hidden="true">→</span> System Understanding
+              <span aria-hidden="true">→</span> Task Context <span aria-hidden="true">→</span>
               Organizational Context
-            </textPath>
-          </text>
-          <text class="layer-label layer-label--task">
-            <textPath href="#task-path" startOffset="50%" text-anchor="middle">
-              Task Context
-            </textPath>
-          </text>
-          <text class="layer-label layer-label--system">
-            <textPath href="#system-path" startOffset="50%" text-anchor="middle">
-              System Understanding
-            </textPath>
-          </text>
-          <text class="layer-label layer-label--current" x="200" y="207" text-anchor="middle">
-            Current Task
-          </text>
-        </g>
-      </svg>
-      <p class="eyebrow">Context Onion</p>
-      <h1>A design model for AGENTS.md.</h1>
-      <p class="lede">Start at the center and expand outward only as needed.</p>
-      <a class="rfc-link" href="/rfcs/RFC-001-progressive-context-acquisition/">
-        Read RFC-001 <span aria-hidden="true">→</span>
-      </a>
-      <p class="feedback">
-        Feedback? <a href="mailto:hello@contextonion.dev">hello@contextonion.dev</a>
-      </p>
+            </p>
+            <p>
+              Acquire enough context for the next decision, expand only when needed, then verify.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="sequence" aria-labelledby="sequence-title">
+        <h2 id="sequence-title">How the routing model works</h2>
+        <ol class="sequence-flow">
+          <li>
+            <div>
+              <h3>Start with the Current Task</h3>
+              <p>What is being changed, and what outcome is expected?</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Orient with System Understanding</h3>
+              <p>
+                Understand the relevant workflow, architecture, dependencies, and boundaries before
+                exploring implementation.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Narrow into Task Context</h3>
+              <p>
+                Locate the relevant code, tests, configuration, callers, and nearby examples.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Resolve Organizational Context when applicable</h3>
+              <p>
+                Load the standards, RFCs, policies, and shared constraints that govern the change.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Verify</h3>
+              <p>
+                Check the result against the task, system behavior, repository constraints, and
+                applicable organizational guidance.
+              </p>
+            </div>
+          </li>
+        </ol>
+        <p class="sequence-principle">Expand only when uncertainty remains.</p>
+      </section>
+
+      <section class="layers" aria-labelledby="layers-title">
+        <h2 id="layers-title">What each knowledge layer contains</h2>
+        <ol>
+          <li>
+            <strong>Current Task</strong>
+            <span>Requested behavior, success criteria, known scope, task-specific constraints.</span>
+          </li>
+          <li>
+            <strong>System Understanding</strong>
+            <span>
+              Architecture, workflows, domain model, service/component dependencies, data flow,
+              lifecycle, ownership boundaries, design rationale.
+            </span>
+          </li>
+          <li>
+            <strong>Task Context</strong>
+            <span>
+              Relevant source, tests, configuration, callers, interfaces, package dependencies, nearby
+              examples.
+            </span>
+          </li>
+          <li>
+            <strong>Organizational Context</strong>
+            <span>
+              RFCs, standards, policies, quality requirements, API conventions, security/compliance
+              guidance, shared engineering constraints.
+            </span>
+          </li>
+        </ol>
+        <aside class="layers-boundary" aria-label="Knowledge layer boundary">
+          <strong>The layers classify knowledge, not tools.</strong>
+          <span>
+            AGENTS.md, MCPs, search, catalogs, documentation systems, retrieval systems, and
+            verification mechanisms help route, acquire, or evaluate context.
+          </span>
+        </aside>
+      </section>
+
+      <section class="router-structure" aria-labelledby="router-structure-title">
+        <h2 id="router-structure-title">How to configure AGENTS.md as the router</h2>
+        <pre aria-label="Recommended AGENTS.md structure shown as a tree"><code>AGENTS.md
+├── Orientation
+├── System-understanding routing
+├── Task-context routing
+├── Constraints
+├── Organizational-context routing
+├── Verification
+└── Context-acquisition policy</code></pre>
+        <aside class="router-structure-note" aria-label="AGENTS.md configuration guidance">
+          <strong>Configure AGENTS.md as a routing interface.</strong>
+          <span>
+            Point agents to the smallest reliable context needed for the next decision, expand only
+            when uncertainty remains, and keep authoritative knowledge in its source.
+          </span>
+        </aside>
+      </section>
+
+      <section class="agents-example" aria-labelledby="agents-example-title">
+        <p class="eyebrow" id="agents-example-title">Example</p>
+        <div class="code-example">
+          <button class="code-example__copy" type="button" data-copy-agents>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="8" y="3" width="12" height="14" rx="3"></rect>
+              <rect x="4" y="7" width="12" height="14" rx="3"></rect>
+            </svg>
+            <span class="visually-hidden" data-copy-label>Copy AGENTS.md</span>
+          </button>
+          <pre><code id="agents-example-code" set:html={agentsExampleHighlighted}></code></pre>
+        </div>
+        <p class="copy-status" data-copy-status aria-live="polite"></p>
+      </section>
+
+      <footer>
+        <p class="eyebrow">Ready to apply the model?</p>
+        <p class="footer-intro">
+          RFC-001 defines the acquisition sequence, AGENTS.md routing pattern, nested repository
+          behavior, verification, and adoption guidance.
+        </p>
+        <a class="rfc-link" href="/rfcs/RFC-001-progressive-context-acquisition/">
+          Read RFC-001 <span aria-hidden="true">→</span>
+        </a>
+        <p class="feedback">
+          Feedback? <a href="mailto:hello@contextonion.dev">hello@contextonion.dev</a>
+          <span class="footer-separator" aria-hidden="true">·</span>
+          <a
+            class="repository-link"
+            href="https://github.com/contextonion/contextonion"
+            aria-label="Context Onion repository on GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 7.7a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.56 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path>
+            </svg>
+            GitHub
+          </a>
+        </p>
+      </footer>
     </main>
   </body>
 </html>
+
+<script>
+  const copyButton = document.querySelector('[data-copy-agents]');
+  const copyLabel = document.querySelector('[data-copy-label]');
+  const exampleCode = document.querySelector('#agents-example-code');
+  const copyStatus = document.querySelector('[data-copy-status]');
+
+  copyButton?.addEventListener('click', async () => {
+    if (!(copyButton instanceof HTMLButtonElement) || !exampleCode) return;
+
+    try {
+      await navigator.clipboard.writeText(exampleCode.textContent ?? '');
+      if (copyLabel) copyLabel.textContent = 'Copied AGENTS.md';
+      if (copyStatus) copyStatus.textContent = 'AGENTS.md copied to the clipboard.';
+
+      window.setTimeout(() => {
+        if (copyLabel) copyLabel.textContent = 'Copy AGENTS.md';
+      }, 1800);
+    } catch {
+      if (copyStatus) copyStatus.textContent = 'Copy failed. Select the example and copy it manually.';
+    }
+  });
+</script>
 
 <style>
   :root {
@@ -100,26 +340,164 @@ const description = 'An open model for progressive context acquisition by engine
   body {
     min-height: 100vh;
     margin: 0;
-    display: grid;
-    place-items: center;
-    padding: 3rem 0;
+    padding: 4rem 0;
     background:
-      radial-gradient(circle at 50% 40%, rgb(118 58 155 / 24%), transparent 30rem),
+      radial-gradient(circle at 50% 24rem, rgb(118 58 155 / 24%), transparent 30rem),
       #0d0a12;
   }
 
   main {
-    width: min(44rem, calc(100% - 3rem));
+    width: min(52rem, calc(100% - 3rem));
+    margin: 0 auto;
     min-width: 0;
     text-align: center;
   }
 
+  .hero {
+    margin-bottom: 2.75rem;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin: 0 0 1rem;
+    color: #c58af9;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow code {
+    all: unset;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 1em;
+    font-weight: 650;
+    letter-spacing: normal;
+    text-transform: none;
+    color: inherit;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 8vw, 5.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    letter-spacing: -0.025em;
+  }
+
+  .promise {
+    margin: 1.75rem auto 0;
+    max-width: 38rem;
+    color: #f4e9fb;
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    font-weight: 650;
+    line-height: 1.4;
+  }
+
+  .lede {
+    margin: 0.8rem 0 0;
+    color: #a99eaf;
+    font-size: clamp(1rem, 2.6vw, 1.2rem);
+  }
+
   .mark {
     display: block;
-    width: min(22rem, 88vw);
+    width: min(25rem, 92vw);
     height: auto;
-    margin: 0 auto 2.5rem;
+    margin: 3rem auto 0;
     overflow: visible;
+  }
+
+  .context-bridge {
+    padding: 2.75rem 0;
+    border-top: 1px solid rgb(197 138 249 / 20%);
+  }
+
+  .context-bridge ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    counter-reset: bridge;
+  }
+
+  .context-bridge > h2 {
+    margin-bottom: 1.4rem;
+  }
+
+  .context-bridge li {
+    counter-increment: bridge;
+    position: relative;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid rgb(197 138 249 / 14%);
+    border-radius: 0.8rem;
+    background: rgb(255 255 255 / 1.5%);
+  }
+
+  .context-bridge li::before {
+    content: '0' counter(bridge);
+    display: block;
+    margin-bottom: 0.8rem;
+    color: #c58af9;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .context-bridge h3 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.05rem, 2.1vw, 1.3rem);
+    line-height: 1.2;
+  }
+
+  .context-bridge h3 code {
+    color: #e6baff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.88em;
+  }
+
+  .context-bridge h3 a {
+    color: inherit;
+    text-underline-offset: 0.18em;
+  }
+
+  .context-bridge h3 a:hover {
+    color: #f2dfff;
+  }
+
+  .context-bridge h3 a:focus-visible {
+    outline: 2px solid #f2b8ff;
+    outline-offset: 3px;
+  }
+
+  .context-bridge p {
+    margin: 0;
+    color: #a99eaf;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .context-bridge .context-route {
+    margin-bottom: 0.65rem;
+    color: #ecd9f8;
+    font-size: 0.82rem;
+    font-weight: 650;
+    line-height: 1.65;
+  }
+
+  .context-route span {
+    color: #a783bb;
   }
 
   .ring {
@@ -168,34 +546,307 @@ const description = 'An open model for progressive context acquisition by engine
     font-size: 16px;
   }
 
-  .eyebrow {
-    margin: 0 0 1rem;
+  .sequence,
+  .layers,
+  .router-structure,
+  .agents-example {
+    padding: 2.25rem 0;
+    border-top: 1px solid rgb(197 138 249 / 16%);
+  }
+
+  .sequence {
+    padding: 3rem 0;
+  }
+
+  .sequence h2 {
+    margin-bottom: 2rem;
+  }
+
+  .sequence-flow {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    counter-reset: sequence;
+  }
+
+  .sequence-flow li {
+    counter-increment: sequence;
+    position: relative;
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 1.2rem;
+    padding-bottom: 2.1rem;
+  }
+
+  .sequence-flow li:last-child {
+    padding-bottom: 0;
+  }
+
+  .sequence-flow li::before {
+    content: '0' counter(sequence);
+    padding-top: 0.15rem;
     color: #c58af9;
-    font-size: 0.78rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
-  h1 {
+  .sequence-flow li:not(:last-child)::after {
+    content: '↓';
+    position: absolute;
+    bottom: 0.45rem;
+    left: 0.3rem;
+    color: #a783bb;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .sequence-flow h3 {
+    margin: 0 0 0.35rem;
+    color: #f8f3ff;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .sequence-flow p {
     margin: 0;
-    font-size: clamp(2.4rem, 10vw, 6rem);
-    line-height: 0.95;
-    letter-spacing: -0.06em;
-    overflow-wrap: anywhere;
+    color: #a99eaf;
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
-  .lede {
-    margin: 1.5rem 0 0;
-    color: #c9c0d1;
-    font-size: clamp(1.1rem, 3vw, 1.45rem);
+  .sequence-principle {
+    max-width: 42rem;
+    margin: 2rem auto 0;
+    color: #e7cff6;
+    font-size: 0.95rem;
+    font-weight: 650;
+    text-align: center;
+  }
+
+  .layers ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin: 1.4rem 0 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    counter-reset: layers;
+  }
+
+  .layers li {
+    counter-increment: layers;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.75rem;
+    padding: 0.9rem;
+    border: 1px solid rgb(197 138 249 / 14%);
+    border-radius: 0.8rem;
+    background: rgb(255 255 255 / 1.5%);
+  }
+
+  .layers li::before {
+    content: counter(layers);
+    display: grid;
+    place-items: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    border: 1px solid rgb(197 138 249 / 36%);
+    border-radius: 999px;
+    color: #dca9ff;
+    font-size: 0.74rem;
+    font-weight: 750;
+    grid-row: 1 / span 2;
+  }
+
+  .layers strong {
+    color: #f8f3ff;
+    font-size: 0.94rem;
+  }
+
+  .layers span {
+    margin-top: 0.15rem;
+    color: #a99eaf;
+    font-size: 0.86rem;
+    line-height: 1.4;
+  }
+
+  .layers-boundary {
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 1.4rem;
+    padding-top: 1.25rem;
+    text-align: left;
+  }
+
+  .layers-boundary strong {
+    color: #e7cff6;
+    font-size: 0.9rem;
+  }
+
+  .layers-boundary span {
+    margin: 0;
+    max-width: 46rem;
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  .router-structure pre {
+    width: min(100%, 38rem);
+    margin: 1.4rem auto 0;
+    padding: 1.25rem 1.4rem;
+    overflow-x: auto;
+    border: 1px solid rgb(197 138 249 / 22%);
+    border-radius: 0.8rem;
+    background: #09070d;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+    color: #e7cff6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: clamp(0.78rem, 2.2vw, 0.9rem);
+    line-height: 1.8;
+    text-align: left;
+  }
+
+  .router-structure code {
+    font: inherit;
+  }
+
+  .router-structure {
+    text-align: left;
+  }
+
+  .router-structure h2 {
+    text-align: center;
+  }
+
+  .router-structure-note {
+    display: grid;
+    gap: 0.35rem;
+    width: min(100%, 38rem);
+    margin: 1.25rem auto 0;
+    color: #a99eaf;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .router-structure-note strong {
+    color: #e7cff6;
+    font-size: 0.9rem;
+  }
+
+  .code-example {
+    position: relative;
+    width: min(100%, 42rem);
+    margin: 1.4rem auto 0;
+    overflow: hidden;
+    border: 1px solid #354052;
+    border-radius: 0.8rem;
+    background: #030303;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+    text-align: left;
+  }
+
+  .code-example__copy {
+    position: absolute;
+    z-index: 1;
+    top: 1.35rem;
+    right: 1.35rem;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0.45rem;
+    background: transparent;
+    color: #dedee4;
+    cursor: pointer;
+  }
+
+  .code-example__copy svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+  }
+
+  .code-example__copy:hover {
+    background: rgb(255 255 255 / 8%);
+    color: #fff;
+  }
+
+  .code-example__copy:focus-visible {
+    outline: 2px solid #f2b8ff;
+    outline-offset: 2px;
+  }
+
+  .code-example pre {
+    max-height: 28rem;
+    margin: 0;
+    padding: 1.5rem 4.25rem 1.5rem 1.65rem;
+    overflow: auto;
+    color: #e2e2e8;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: clamp(0.76rem, 1.9vw, 0.86rem);
+    line-height: 1.6;
+    tab-size: 2;
+  }
+
+  .code-example code {
+    font: inherit;
+  }
+
+  .code-token--heading {
+    color: #f4f4f7;
+    font-weight: 750;
+  }
+
+  .code-token--inline {
+    padding: 0.08em 0.3em;
+    border-radius: 0.35em;
+    background: #1c283a;
+    color: #eef1f7;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .copy-status {
+    min-height: 1.2rem;
+    margin: 0.65rem 0 0;
+    color: #91869a;
+    font-size: 0.78rem;
+  }
+
+  footer {
+    padding-top: 2.5rem;
+  }
+
+  .footer-intro {
+    max-width: 40rem;
+    margin: 0 auto 1.4rem;
+    color: #a99eaf;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .rfc-link {
     display: inline-flex;
     gap: 0.5rem;
     align-items: center;
-    margin-top: 2rem;
     padding: 0.75rem 1rem;
     border: 1px solid rgb(197 138 249 / 55%);
     border-radius: 999px;
@@ -215,7 +866,8 @@ const description = 'An open model for progressive context acquisition by engine
     transform: translateY(-1px);
   }
 
-  .rfc-link:focus-visible {
+  .rfc-link:focus-visible,
+  .feedback a:focus-visible {
     outline: 2px solid #f2b8ff;
     outline-offset: 4px;
   }
@@ -235,22 +887,50 @@ const description = 'An open model for progressive context acquisition by engine
     color: #ead7f5;
   }
 
-  .feedback a:focus-visible {
-    outline: 2px solid #f2b8ff;
-    outline-offset: 3px;
+  .footer-separator {
+    margin: 0 0.55rem;
+    color: #62596a;
   }
 
-  @media (max-width: 36rem) {
+  .repository-link {
+    display: inline-flex;
+    gap: 0.3rem;
+    align-items: center;
+  }
+
+  .repository-link svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    fill: currentColor;
+  }
+
+  @media (max-width: 42rem) {
     body {
-      padding: 2rem 0;
+      padding: 2.5rem 0;
     }
 
-    .mark {
-      margin-bottom: 2rem;
+    .hero {
+      margin-bottom: 2.25rem;
     }
 
     h1 {
-      font-size: clamp(2.35rem, 11vw, 3.2rem);
+      font-size: clamp(2.35rem, 11vw, 3.5rem);
+    }
+
+    .mark {
+      margin-top: 2.5rem;
+    }
+
+    .context-bridge {
+      padding: 2.25rem 0;
+    }
+
+    .context-bridge ol {
+      grid-template-columns: 1fr;
+    }
+
+    .layers ol {
+      grid-template-columns: 1fr;
     }
 
     .layer-label {
