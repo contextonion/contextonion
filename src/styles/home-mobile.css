@@ -1,0 +1,130 @@
+/* Mobile-only responsive refinements for the Context Onion landing page. */
+@media (max-width: 42rem) {
+  main:has(.context-bridge) {
+    width: min(52rem, calc(100% - 2.5rem));
+  }
+
+  .hero .lede {
+    font-size: 1.125rem;
+    line-height: 1.55;
+  }
+
+  .hero .mark {
+    width: min(22rem, 88vw);
+    margin-top: 2.25rem;
+  }
+
+  .context-bridge li {
+    padding: 1.2rem;
+  }
+
+  .context-bridge p,
+  .sequence-flow p,
+  .layers span,
+  .layers-boundary span,
+  .router-structure-note,
+  .footer-intro {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .context-bridge .context-route {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .context-bridge h3,
+  .sequence-flow h3,
+  .layers strong {
+    font-size: 1.08rem;
+  }
+
+  .context-bridge li::before,
+  .sequence-flow li::before {
+    font-size: 0.78rem;
+  }
+
+  .sequence-flow li {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-bottom: 2rem;
+  }
+
+  .sequence-flow li:not(:last-child)::after {
+    left: 0.2rem;
+  }
+
+  .sequence-principle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .layers li {
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    column-gap: 0.85rem;
+    padding: 1.15rem;
+  }
+
+  .layers li::before {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.78rem;
+  }
+
+  .layers-boundary {
+    gap: 0.45rem;
+  }
+
+  .layers-boundary strong,
+  .router-structure-note strong {
+    font-size: 1rem;
+  }
+
+  .router-structure pre {
+    max-width: 100%;
+    padding: 1.1rem 1.15rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    white-space: pre;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .code-example {
+    max-width: 100%;
+  }
+
+  .code-example pre {
+    padding: 1.25rem 3.6rem 1.25rem 1.25rem;
+    font-size: 0.94rem;
+    line-height: 1.65;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .code-example__copy {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .feedback {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 24rem) {
+  main:has(.context-bridge) {
+    width: min(52rem, calc(100% - 2rem));
+  }
+
+  .context-bridge li,
+  .layers li {
+    padding: 1rem;
+  }
+
+  .sequence-flow li {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+}
