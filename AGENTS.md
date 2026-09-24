@@ -38,7 +38,7 @@ Trace a rendered RFC page to its imported Markdown before editing. Use nearby As
 - Keep claims vendor-neutral and supported by evidence.
 - Do not commit generated `dist/` output or secrets.
 - Do not add a GitHub Actions deployment workflow; Cloudflare's Git integration owns deployment.
-- Use focused commits with short imperative subjects. Set the contributor email to `orlando.garcia@gmail.com`.
+- Use focused commits with short imperative subjects.
 
 ## Organizational-Context Routing
 
