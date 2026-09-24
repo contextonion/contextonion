@@ -4,14 +4,20 @@
     width: min(52rem, calc(100% - 2.5rem));
   }
 
+  .hero {
+    margin-bottom: 2rem;
+  }
+
   .hero .lede {
     font-size: 1.125rem;
     line-height: 1.55;
   }
 
   .hero .mark {
-    width: min(22rem, 88vw);
-    margin-top: 2.25rem;
+    width: min(20.5rem, 82vw, 46svh);
+    max-width: 100%;
+    height: auto;
+    margin-top: 1.8rem;
   }
 
   .context-bridge li {
@@ -113,9 +119,45 @@
   }
 }
 
+/* Phones with a short visible viewport (browser chrome open, landscape-ish heights, etc.). */
+@media (max-width: 42rem) and (max-height: 52rem) {
+  body {
+    padding-top: 1.75rem;
+  }
+
+  .hero {
+    margin-bottom: 1.6rem;
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 10vw, 3.15rem);
+  }
+
+  .hero .lede {
+    margin-top: 0.65rem;
+  }
+
+  .hero .mark {
+    width: min(19rem, 78vw, 42svh);
+    margin-top: 1.4rem;
+  }
+}
+
 @media (max-width: 24rem) {
   main:has(.context-bridge) {
     width: min(52rem, calc(100% - 2rem));
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 10.5vw, 2.85rem);
+  }
+
+  .hero .mark {
+    width: min(18rem, 80vw, 42svh);
   }
 
   .context-bridge li,
