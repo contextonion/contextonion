@@ -16,13 +16,18 @@ const description = 'An open model for progressive context acquisition by engine
   <body>
     <main>
       <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Context Onion</p>
+        <h1 id="page-title">A model for progressive context acquisition by engineering agents.</h1>
+        <p class="promise">Reach sufficient context without exploring the whole system first.</p>
+        <p class="lede">Start at the center and expand outward only as needed.</p>
+
         <svg
           class="mark"
           viewBox="0 0 400 400"
           role="img"
           aria-labelledby="onion-title onion-description"
         >
-          <title id="onion-title">The four Context Onion layers</title>
+          <title id="onion-title">The four Context Onion knowledge layers</title>
           <desc id="onion-description">
             Current Task at the center, followed by System Understanding, Task Context,
             and Organizational Context.
@@ -71,11 +76,14 @@ const description = 'An open model for progressive context acquisition by engine
             </text>
           </g>
         </svg>
+      </section>
 
-        <p class="eyebrow">Context Onion</p>
-        <h1 id="page-title">A model for progressive context acquisition by engineering agents.</h1>
-        <p class="promise">Reach sufficient context without exploring the whole system first.</p>
-        <p class="lede">Start at the center and expand outward only as needed.</p>
+      <section class="sequence" aria-labelledby="sequence-title">
+        <p class="section-label">Acquisition sequence</p>
+        <h2 id="sequence-title">Orient before you explore implementation.</h2>
+        <p class="sequence-line" aria-label="Current Task, then System Understanding, then Task Context, then Organizational Context as applicable">
+          <span>Current Task</span><b aria-hidden="true">→</b><span>System Understanding</span><b aria-hidden="true">→</b><span>Task Context</span><b aria-hidden="true">→</b><span>Organizational Context <em>as applicable</em></span>
+        </p>
       </section>
 
       <section class="layers" aria-labelledby="layers-title">
@@ -91,15 +99,8 @@ const description = 'An open model for progressive context acquisition by engine
       <section class="router" aria-labelledby="router-title">
         <h2 id="router-title">AGENTS.md is the repository context router.</h2>
         <p>
-          It should point the agent to the right knowledge for the task instead of trying to contain all repository,
+          It points the agent to the right knowledge for the task instead of trying to contain repository,
           system and organizational context itself.
-        </p>
-      </section>
-
-      <section class="sequence" aria-labelledby="sequence-title">
-        <h2 id="sequence-title">Acquisition sequence</h2>
-        <p class="sequence-line" aria-label="Current Task, then System Understanding, then Task Context, then Organizational Context as applicable">
-          <span>Current Task</span><b aria-hidden="true">→</b><span>System Understanding</span><b aria-hidden="true">→</b><span>Task Context</span><b aria-hidden="true">→</b><span>Organizational Context <em>as applicable</em></span>
         </p>
       </section>
 
@@ -134,7 +135,7 @@ const description = 'An open model for progressive context acquisition by engine
     margin: 0;
     padding: 4rem 0;
     background:
-      radial-gradient(circle at 50% 18rem, rgb(118 58 155 / 24%), transparent 30rem),
+      radial-gradient(circle at 50% 24rem, rgb(118 58 155 / 24%), transparent 30rem),
       #0d0a12;
   }
 
@@ -146,14 +147,53 @@ const description = 'An open model for progressive context acquisition by engine
   }
 
   .hero {
-    margin-bottom: 4.5rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin: 0 0 1rem;
+    color: #c58af9;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 8vw, 5.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    letter-spacing: -0.025em;
+  }
+
+  .promise {
+    margin: 1.75rem auto 0;
+    max-width: 38rem;
+    color: #f4e9fb;
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    font-weight: 650;
+    line-height: 1.4;
+  }
+
+  .lede {
+    margin: 0.8rem 0 0;
+    color: #a99eaf;
+    font-size: clamp(1rem, 2.6vw, 1.2rem);
   }
 
   .mark {
     display: block;
     width: min(22rem, 88vw);
     height: auto;
-    margin: 0 auto 2.5rem;
+    margin: 3rem auto 0;
     overflow: visible;
   }
 
@@ -203,56 +243,56 @@ const description = 'An open model for progressive context acquisition by engine
     font-size: 16px;
   }
 
-  .eyebrow {
-    margin: 0 0 1rem;
-    color: #c58af9;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    margin: 0;
-    font-size: clamp(2.5rem, 8vw, 5.4rem);
-    line-height: 0.98;
-    letter-spacing: -0.055em;
-    text-wrap: balance;
-  }
-
-  h2 {
-    margin: 0 0 1rem;
-    font-size: clamp(1.35rem, 3vw, 1.8rem);
-    letter-spacing: -0.025em;
-  }
-
-  .promise {
-    margin: 1.75rem auto 0;
-    max-width: 38rem;
-    color: #f4e9fb;
-    font-size: clamp(1.15rem, 3vw, 1.5rem);
-    font-weight: 650;
-    line-height: 1.4;
-  }
-
-  .lede {
-    margin: 0.8rem 0 0;
-    color: #a99eaf;
-    font-size: clamp(1rem, 2.6vw, 1.2rem);
-  }
-
+  .sequence,
   .layers,
-  .router,
-  .sequence {
+  .router {
     padding: 2.25rem 0;
     border-top: 1px solid rgb(197 138 249 / 16%);
+  }
+
+  .sequence {
+    padding: 2.6rem 0;
+  }
+
+  .sequence h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .sequence-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    max-width: 46rem;
+    margin: 0 auto;
+    color: #b9aebe;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    line-height: 1.6;
+  }
+
+  .sequence-line span {
+    color: #f0defb;
+    font-weight: 650;
+  }
+
+  .sequence-line b {
+    color: #a783bb;
+    font-weight: 650;
+  }
+
+  .sequence-line em {
+    color: #91869a;
+    font-size: 0.82em;
+    font-style: normal;
+    font-weight: 500;
   }
 
   .layers ol {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.9rem;
-    margin: 1.5rem 0 0;
+    gap: 0.85rem;
+    margin: 1.4rem 0 0;
     padding: 0;
     list-style: none;
     text-align: left;
@@ -263,69 +303,45 @@ const description = 'An open model for progressive context acquisition by engine
     counter-increment: layers;
     display: grid;
     grid-template-columns: auto 1fr;
-    column-gap: 0.8rem;
-    padding: 1rem;
-    border: 1px solid rgb(197 138 249 / 18%);
-    border-radius: 0.9rem;
-    background: rgb(255 255 255 / 2%);
+    column-gap: 0.75rem;
+    padding: 0.9rem;
+    border: 1px solid rgb(197 138 249 / 14%);
+    border-radius: 0.8rem;
+    background: rgb(255 255 255 / 1.5%);
   }
 
   .layers li::before {
     content: counter(layers);
     display: grid;
     place-items: center;
-    width: 1.75rem;
-    height: 1.75rem;
-    border: 1px solid rgb(197 138 249 / 42%);
+    width: 1.65rem;
+    height: 1.65rem;
+    border: 1px solid rgb(197 138 249 / 36%);
     border-radius: 999px;
     color: #dca9ff;
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     font-weight: 750;
     grid-row: 1 / span 2;
   }
 
   .layers strong {
     color: #f8f3ff;
-    font-size: 0.96rem;
+    font-size: 0.94rem;
   }
 
   .layers span {
-    margin-top: 0.2rem;
+    margin-top: 0.15rem;
     color: #a99eaf;
-    font-size: 0.9rem;
-    line-height: 1.45;
+    font-size: 0.86rem;
+    line-height: 1.4;
   }
 
-  .router p,
-  .sequence p {
-    max-width: 42rem;
+  .router p {
+    max-width: 40rem;
     margin: 0 auto;
     color: #b9aebe;
     font-size: 1rem;
     line-height: 1.65;
-  }
-
-  .sequence-line {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .sequence-line span {
-    color: #ead7f5;
-  }
-
-  .sequence-line b {
-    color: #8d719d;
-    font-weight: 600;
-  }
-
-  .sequence-line em {
-    color: #91869a;
-    font-size: 0.86em;
-    font-style: normal;
   }
 
   footer {
@@ -382,19 +398,28 @@ const description = 'An open model for progressive context acquisition by engine
     }
 
     .hero {
-      margin-bottom: 3rem;
-    }
-
-    .mark {
-      margin-bottom: 2rem;
+      margin-bottom: 2.25rem;
     }
 
     h1 {
       font-size: clamp(2.35rem, 11vw, 3.5rem);
     }
 
+    .mark {
+      margin-top: 2.5rem;
+    }
+
     .layers ol {
       grid-template-columns: 1fr;
+    }
+
+    .sequence-line {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .sequence-line b {
+      transform: rotate(90deg);
     }
 
     .layer-label {
