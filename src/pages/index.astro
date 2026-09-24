@@ -1,6 +1,6 @@
 ---
 const title = 'Context Onion';
-const description = 'Peel back the layers. Keep the context that matters.';
+const description = 'An open model for progressive context acquisition by engineering agents.';
 ---
 
 <!doctype html>
@@ -15,14 +15,67 @@ const description = 'Peel back the layers. Keep the context that matters.';
   </head>
   <body>
     <main>
-      <div class="mark" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <svg
+        class="mark"
+        viewBox="0 0 400 400"
+        role="img"
+        aria-labelledby="onion-title onion-description"
+      >
+        <title id="onion-title">The four Context Onion layers</title>
+        <desc id="onion-description">
+          Current Task at the center, followed by System Understanding, Task Context,
+          and Organizational Context.
+        </desc>
+        <defs>
+          <path id="organizational-path" d="M 40 200 A 160 160 0 0 1 360 200" />
+          <path id="task-path" d="M 80 200 A 120 120 0 0 1 320 200" />
+          <path id="system-path" d="M 120 200 A 80 80 0 0 1 280 200" />
+          <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.018"
+              numOctaves="2"
+              seed="7"
+              result="noise"
+            />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" />
+          </filter>
+        </defs>
+
+        <g class="rings" filter="url(#hand-drawn)" aria-hidden="true">
+          <circle class="ring ring--organizational" cx="200" cy="200" r="180" />
+          <circle class="ring ring--task" cx="200" cy="200" r="140" />
+          <circle class="ring ring--system" cx="200" cy="200" r="100" />
+          <circle class="ring ring--current" cx="200" cy="200" r="60" />
+        </g>
+
+        <g class="layer-labels" aria-hidden="true">
+          <text class="layer-label layer-label--organizational">
+            <textPath href="#organizational-path" startOffset="50%" text-anchor="middle">
+              Organizational Context
+            </textPath>
+          </text>
+          <text class="layer-label layer-label--task">
+            <textPath href="#task-path" startOffset="50%" text-anchor="middle">
+              Task Context
+            </textPath>
+          </text>
+          <text class="layer-label layer-label--system">
+            <textPath href="#system-path" startOffset="50%" text-anchor="middle">
+              System Understanding
+            </textPath>
+          </text>
+          <text class="layer-label layer-label--current" x="200" y="207" text-anchor="middle">
+            Current Task
+          </text>
+        </g>
+      </svg>
       <p class="eyebrow">Context Onion</p>
-      <h1>A design model for `AGENTS.md`.</h1>
+      <h1>A design model for AGENTS.md.</h1>
       <p class="lede">Start at the center and expand outward only as needed.</p>
+      <a class="rfc-link" href="/rfcs/RFC-001-progressive-context-acquisition/">
+        Read RFC-001 <span aria-hidden="true">→</span>
+      </a>
     </main>
   </body>
 </html>
@@ -46,6 +99,7 @@ const description = 'Peel back the layers. Keep the context that matters.';
     margin: 0;
     display: grid;
     place-items: center;
+    padding: 3rem 0;
     background:
       radial-gradient(circle at 50% 40%, rgb(118 58 155 / 24%), transparent 30rem),
       #0d0a12;
@@ -53,33 +107,62 @@ const description = 'Peel back the layers. Keep the context that matters.';
 
   main {
     width: min(44rem, calc(100% - 3rem));
+    min-width: 0;
     text-align: center;
   }
 
   .mark {
-    position: relative;
-    width: 7rem;
-    height: 7rem;
-    margin: 0 auto 2rem;
+    display: block;
+    width: min(22rem, 88vw);
+    height: auto;
+    margin: 0 auto 2.5rem;
+    overflow: visible;
   }
 
-  .mark span {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    border: 2px solid #c58af9;
-    border-radius: 55% 45% 52% 48%;
-    transform: rotate(45deg);
+  .ring {
+    fill: rgb(13 10 18 / 58%);
+    stroke-width: 3;
   }
 
-  .mark span:nth-child(2) {
-    inset: 1rem;
-    border-color: #f2b8ff;
+  .ring--organizational {
+    stroke: #b96df1;
   }
 
-  .mark span:nth-child(3) {
-    inset: 2rem;
-    border-color: #fff;
+  .ring--task {
+    stroke: #ca88f2;
+  }
+
+  .ring--system {
+    stroke: #e2aaf3;
+  }
+
+  .ring--current {
+    stroke: #fff3ff;
+  }
+
+  .layer-label {
+    fill: #fbf4ff;
+    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+
+  .layer-label--organizational {
+    fill: #cf8cff;
+  }
+
+  .layer-label--task {
+    fill: #dfa8ff;
+  }
+
+  .layer-label--system {
+    fill: #efcaff;
+    font-size: 15px;
+  }
+
+  .layer-label--current {
+    font-size: 16px;
   }
 
   .eyebrow {
@@ -93,14 +176,70 @@ const description = 'Peel back the layers. Keep the context that matters.';
 
   h1 {
     margin: 0;
-    font-size: clamp(2.8rem, 10vw, 6rem);
+    font-size: clamp(2.4rem, 10vw, 6rem);
     line-height: 0.95;
     letter-spacing: -0.06em;
+    overflow-wrap: anywhere;
   }
 
   .lede {
     margin: 1.5rem 0 0;
     color: #c9c0d1;
     font-size: clamp(1.1rem, 3vw, 1.45rem);
+  }
+
+  .rfc-link {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgb(197 138 249 / 55%);
+    border-radius: 999px;
+    color: #f2dfff;
+    font-size: 0.95rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition:
+      border-color 160ms ease,
+      background-color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .rfc-link:hover {
+    border-color: #c58af9;
+    background: rgb(197 138 249 / 12%);
+    transform: translateY(-1px);
+  }
+
+  .rfc-link:focus-visible {
+    outline: 2px solid #f2b8ff;
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 36rem) {
+    body {
+      padding: 2rem 0;
+    }
+
+    .mark {
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 11vw, 3.2rem);
+    }
+
+    .layer-label {
+      font-size: 15px;
+    }
+
+    .layer-label--system {
+      font-size: 13px;
+    }
+
+    .layer-label--current {
+      font-size: 14px;
+    }
   }
 </style>
