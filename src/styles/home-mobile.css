@@ -1,26 +1,102 @@
-/* Mobile-only responsive refinements for the Context Onion landing page. */
+/* Mobile-first responsive refinements for the Context Onion landing page. */
+
 @media (max-width: 42rem) {
-  main:has(.context-bridge) {
-    width: min(52rem, calc(100% - 2.5rem));
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
+  body {
+    padding: 1.75rem 0 2.5rem;
+  }
+
+  main:has(.context-bridge) {
+    width: calc(100% - 2.5rem);
+    max-width: 52rem;
+    margin-inline: auto;
+    overflow: visible;
+  }
+
+  /* Hero: keep every element inside the visible viewport and remove fixed desktop feel. */
   .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
     margin-bottom: 2rem;
   }
 
+  .hero .eyebrow {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0.8rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+    font-size: clamp(0.72rem, 3.3vw, 0.82rem);
+    line-height: 1.45;
+    letter-spacing: clamp(0.11em, 0.5vw, 0.18em);
+  }
+
+  .hero h1 {
+    width: min(100%, 21rem);
+    margin-inline: auto;
+    font-size: clamp(2.35rem, 11.7vw, 3.2rem);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+    text-wrap: balance;
+  }
+
   .hero .lede {
-    font-size: 1.125rem;
-    line-height: 1.55;
+    width: min(100%, 20rem);
+    margin: 1rem auto 0;
+    font-size: clamp(1.05rem, 4.8vw, 1.16rem);
+    line-height: 1.5;
+    text-wrap: balance;
   }
 
   .hero .mark {
-    width: min(20.5rem, 82vw, 46svh);
-    max-width: 100%;
+    display: block;
+    width: min(78vw, 19rem);
+    max-width: calc(100vw - 3.25rem);
     height: auto;
-    margin-top: 1.8rem;
+    max-height: 43svh;
+    margin: clamp(1.55rem, 5.5vw, 2rem) auto 0;
+    flex: 0 1 auto;
+    overflow: visible;
+  }
+
+  .context-bridge,
+  .sequence,
+  .layers,
+  .router-structure,
+  .agents-example {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .context-bridge {
+    padding: 2.35rem 0;
+  }
+
+  .context-bridge > h2,
+  .sequence h2,
+  .layers h2,
+  .router-structure h2 {
+    text-wrap: balance;
+  }
+
+  .context-bridge ol,
+  .layers ol {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .context-bridge li {
+    min-width: 0;
     padding: 1.2rem;
   }
 
@@ -30,19 +106,20 @@
   .layers-boundary span,
   .router-structure-note,
   .footer-intro {
-    font-size: 1.0625rem;
+    font-size: clamp(1.02rem, 4.45vw, 1.08rem);
     line-height: 1.6;
   }
 
   .context-bridge .context-route {
-    font-size: 1rem;
+    font-size: clamp(0.96rem, 4.1vw, 1.02rem);
     line-height: 1.65;
+    overflow-wrap: anywhere;
   }
 
   .context-bridge h3,
   .sequence-flow h3,
   .layers strong {
-    font-size: 1.08rem;
+    font-size: clamp(1.05rem, 4.6vw, 1.12rem);
   }
 
   .context-bridge li::before,
@@ -50,14 +127,19 @@
     font-size: 0.78rem;
   }
 
+  .sequence-flow {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .sequence-flow li {
-    grid-template-columns: 2.25rem minmax(0, 1fr);
-    gap: 0.75rem;
+    grid-template-columns: 1.9rem minmax(0, 1fr);
+    gap: 0.7rem;
     padding-bottom: 2rem;
   }
 
   .sequence-flow li:not(:last-child)::after {
-    left: 0.2rem;
+    left: 0.16rem;
   }
 
   .sequence-principle {
@@ -66,9 +148,10 @@
   }
 
   .layers li {
+    min-width: 0;
     grid-template-columns: 1.75rem minmax(0, 1fr);
-    column-gap: 0.85rem;
-    padding: 1.15rem;
+    column-gap: 0.8rem;
+    padding: 1.1rem;
   }
 
   .layers li::before {
@@ -86,10 +169,16 @@
     font-size: 1rem;
   }
 
-  .router-structure pre {
+  .router-structure pre,
+  .code-example {
+    width: 100%;
     max-width: 100%;
-    padding: 1.1rem 1.15rem;
-    font-size: 0.95rem;
+    min-width: 0;
+  }
+
+  .router-structure pre {
+    padding: 1.05rem 1.1rem;
+    font-size: clamp(0.88rem, 3.9vw, 0.96rem);
     line-height: 1.7;
     white-space: pre;
     overflow-x: auto;
@@ -97,20 +186,23 @@
   }
 
   .code-example {
-    max-width: 100%;
+    overflow: hidden;
   }
 
   .code-example pre {
-    padding: 1.25rem 3.6rem 1.25rem 1.25rem;
-    font-size: 0.94rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 1.2rem 3.5rem 1.2rem 1.2rem;
+    font-size: clamp(0.87rem, 3.8vw, 0.94rem);
     line-height: 1.65;
-    overflow-x: auto;
+    overflow: auto;
     overscroll-behavior-x: contain;
   }
 
   .code-example__copy {
-    top: 1rem;
-    right: 1rem;
+    top: 0.9rem;
+    right: 0.9rem;
   }
 
   .feedback {
@@ -119,10 +211,10 @@
   }
 }
 
-/* Phones with a short visible viewport (browser chrome open, landscape-ish heights, etc.). */
+/* Common phone viewport: prioritize fitting the hero naturally above the next section. */
 @media (max-width: 42rem) and (max-height: 52rem) {
   body {
-    padding-top: 1.75rem;
+    padding-top: 1.35rem;
   }
 
   .hero {
@@ -130,34 +222,43 @@
   }
 
   .hero .eyebrow {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.65rem;
   }
 
   .hero h1 {
-    font-size: clamp(2.2rem, 10vw, 3.15rem);
+    font-size: clamp(2.2rem, 10.8vw, 2.95rem);
   }
 
   .hero .lede {
-    margin-top: 0.65rem;
+    margin-top: 0.75rem;
   }
 
   .hero .mark {
-    width: min(19rem, 78vw, 42svh);
-    margin-top: 1.4rem;
+    width: min(72vw, 17.5rem);
+    max-width: calc(100vw - 3.5rem);
+    max-height: 39svh;
+    margin-top: 1.2rem;
   }
 }
 
+/* Narrow phones. */
 @media (max-width: 24rem) {
   main:has(.context-bridge) {
-    width: min(52rem, calc(100% - 2rem));
+    width: calc(100% - 2rem);
   }
 
   .hero h1 {
-    font-size: clamp(2.1rem, 10.5vw, 2.85rem);
+    width: min(100%, 19rem);
+    font-size: clamp(2.05rem, 11vw, 2.75rem);
+  }
+
+  .hero .lede {
+    width: min(100%, 18rem);
   }
 
   .hero .mark {
-    width: min(18rem, 80vw, 42svh);
+    width: min(70vw, 16.5rem);
+    max-width: calc(100vw - 3rem);
   }
 
   .context-bridge li,
@@ -166,7 +267,25 @@
   }
 
   .sequence-flow li {
-    grid-template-columns: 2rem minmax(0, 1fr);
-    gap: 0.65rem;
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    gap: 0.6rem;
+  }
+}
+
+/* Very short mobile viewports: browser chrome, split screen, landscape. */
+@media (max-width: 42rem) and (max-height: 44rem) {
+  .hero h1 {
+    font-size: clamp(2rem, 9.8vw, 2.7rem);
+  }
+
+  .hero .lede {
+    font-size: 1rem;
+    margin-top: 0.6rem;
+  }
+
+  .hero .mark {
+    width: min(64vw, 15rem);
+    max-height: 34svh;
+    margin-top: 1rem;
   }
 }
