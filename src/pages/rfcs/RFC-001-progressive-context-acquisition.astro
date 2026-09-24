@@ -20,6 +20,14 @@ const description = 'The Context Onion model for progressive context acquisition
       <nav aria-label="Breadcrumb">
         <a href="/">← Context Onion</a>
       </nav>
+      <aside class="feedback" aria-label="RFC feedback">
+        Have feedback on RFC-001?{' '}
+        <a href="mailto:hello@contextonion.dev?subject=RFC-001%20feedback">
+          Email hello@contextonion.dev
+        </a>{' '}
+        or open an issue or pull request in the{' '}
+        <a href="https://github.com/contextonion/contextonion">canonical repository</a>.
+      </aside>
       <article>
         <Content />
       </article>
@@ -56,7 +64,7 @@ const description = 'The Context Onion model for progressive context acquisition
   }
 
   nav {
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   a {
@@ -66,6 +74,17 @@ const description = 'The Context Onion model for progressive context acquisition
 
   a:hover {
     color: #edcfff;
+  }
+
+  .feedback {
+    margin: 0 0 3rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgb(197 138 249 / 24%);
+    border-radius: 0.75rem;
+    background: rgb(197 138 249 / 7%);
+    color: #bfb3c8;
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   article {
@@ -145,6 +164,10 @@ const description = 'The Context Onion model for progressive context acquisition
     }
 
     nav {
+      margin-bottom: 1.25rem;
+    }
+
+    .feedback {
       margin-bottom: 2rem;
     }
   }

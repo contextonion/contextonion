@@ -11,6 +11,8 @@ Context Onion is an open model and reference standard. Feedback grounded in real
 
 Small corrections and clarifications may go directly to a pull request. Major changes should update an existing Draft RFC or propose a new RFC rather than hiding design decisions in implementation changes.
 
+Feedback may also be sent to [hello@contextonion.dev](mailto:hello@contextonion.dev). Prefer a GitHub issue or pull request when the discussion should remain public and discoverable.
+
 ## Writing guidance
 
 - Keep language concise, technical, and vendor-neutral.

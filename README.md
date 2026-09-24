@@ -28,6 +28,7 @@ The project is maintained in the Context Onion GitHub organization and is indepe
 - Website: <https://contextonion.dev>
 - GitHub organization: <https://github.com/contextonion>
 - Canonical repository: <https://github.com/contextonion/contextonion>
+- Feedback: [hello@contextonion.dev](mailto:hello@contextonion.dev)
 - RFC index: [rfcs/README.md](rfcs/README.md)
 - Contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 - Governance: [GOVERNANCE.md](GOVERNANCE.md)

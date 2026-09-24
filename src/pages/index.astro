@@ -76,6 +76,9 @@ const description = 'An open model for progressive context acquisition by engine
       <a class="rfc-link" href="/rfcs/RFC-001-progressive-context-acquisition/">
         Read RFC-001 <span aria-hidden="true">→</span>
       </a>
+      <p class="feedback">
+        Feedback? <a href="mailto:hello@contextonion.dev">hello@contextonion.dev</a>
+      </p>
     </main>
   </body>
 </html>
@@ -215,6 +218,26 @@ const description = 'An open model for progressive context acquisition by engine
   .rfc-link:focus-visible {
     outline: 2px solid #f2b8ff;
     outline-offset: 4px;
+  }
+
+  .feedback {
+    margin: 1.25rem 0 0;
+    color: #91869a;
+    font-size: 0.82rem;
+  }
+
+  .feedback a {
+    color: #bdaac9;
+    text-underline-offset: 0.2em;
+  }
+
+  .feedback a:hover {
+    color: #ead7f5;
+  }
+
+  .feedback a:focus-visible {
+    outline: 2px solid #f2b8ff;
+    outline-offset: 3px;
   }
 
   @media (max-width: 36rem) {
