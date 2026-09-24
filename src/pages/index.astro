@@ -248,10 +248,17 @@ const agentsExampleHighlighted = agentsExample
 ├── Organizational-context routing
 ├── Verification
 └── Context-acquisition policy</code></pre>
+        <aside class="router-structure-note" aria-label="AGENTS.md configuration guidance">
+          <strong>Configure AGENTS.md as a routing interface.</strong>
+          <span>
+            Point agents to the smallest reliable context needed for the next decision, expand only
+            when uncertainty remains, and keep authoritative knowledge in its source.
+          </span>
+        </aside>
       </section>
 
       <section class="agents-example" aria-labelledby="agents-example-title">
-        <h2 id="agents-example-title">A compact AGENTS.md example</h2>
+        <p class="eyebrow" id="agents-example-title">Example</p>
         <div class="code-example">
           <button class="code-example__copy" type="button" data-copy-agents>
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -703,6 +710,21 @@ const agentsExampleHighlighted = agentsExample
 
   .router-structure h2 {
     text-align: center;
+  }
+
+  .router-structure-note {
+    display: grid;
+    gap: 0.35rem;
+    width: min(100%, 38rem);
+    margin: 1.25rem auto 0;
+    color: #a99eaf;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .router-structure-note strong {
+    color: #e7cff6;
+    font-size: 0.9rem;
   }
 
   .code-example {
