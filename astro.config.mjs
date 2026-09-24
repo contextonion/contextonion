@@ -24,6 +24,10 @@ const landingPageMobileStyles = {
                   .replace(
                     'To help coding agents acquire context progressively.',
                     'And help your coding agents acquire context progressively.',
+                  )
+                  .replace(
+                    /<aside class="layers-boundary" aria-label="Knowledge layer boundary">[\s\S]*?<\/aside>/,
+                    '<aside class="layers-boundary" aria-label="Knowledge layer boundary"><span>The layers classify knowledge. AGENTS.md, MCPs, search, catalogs, documentation systems, retrieval systems, and verification mechanisms help route, acquire, or evaluate context.</span></aside>',
                   );
               },
             },
