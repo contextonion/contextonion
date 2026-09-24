@@ -15,70 +15,102 @@ const description = 'An open model for progressive context acquisition by engine
   </head>
   <body>
     <main>
-      <svg
-        class="mark"
-        viewBox="0 0 400 400"
-        role="img"
-        aria-labelledby="onion-title onion-description"
-      >
-        <title id="onion-title">The four Context Onion layers</title>
-        <desc id="onion-description">
-          Current Task at the center, followed by System Understanding, Task Context,
-          and Organizational Context.
-        </desc>
-        <defs>
-          <path id="organizational-path" d="M 40 200 A 160 160 0 0 1 360 200" />
-          <path id="task-path" d="M 80 200 A 120 120 0 0 1 320 200" />
-          <path id="system-path" d="M 120 200 A 80 80 0 0 1 280 200" />
-          <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.018"
-              numOctaves="2"
-              seed="7"
-              result="noise"
-            />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" />
-          </filter>
-        </defs>
+      <section class="hero" aria-labelledby="page-title">
+        <svg
+          class="mark"
+          viewBox="0 0 400 400"
+          role="img"
+          aria-labelledby="onion-title onion-description"
+        >
+          <title id="onion-title">The four Context Onion layers</title>
+          <desc id="onion-description">
+            Current Task at the center, followed by System Understanding, Task Context,
+            and Organizational Context.
+          </desc>
+          <defs>
+            <path id="organizational-path" d="M 40 200 A 160 160 0 0 1 360 200" />
+            <path id="task-path" d="M 80 200 A 120 120 0 0 1 320 200" />
+            <path id="system-path" d="M 120 200 A 80 80 0 0 1 280 200" />
+            <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.018"
+                numOctaves="2"
+                seed="7"
+                result="noise"
+              />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" />
+            </filter>
+          </defs>
 
-        <g class="rings" filter="url(#hand-drawn)" aria-hidden="true">
-          <circle class="ring ring--organizational" cx="200" cy="200" r="180" />
-          <circle class="ring ring--task" cx="200" cy="200" r="140" />
-          <circle class="ring ring--system" cx="200" cy="200" r="100" />
-          <circle class="ring ring--current" cx="200" cy="200" r="60" />
-        </g>
+          <g class="rings" filter="url(#hand-drawn)" aria-hidden="true">
+            <circle class="ring ring--organizational" cx="200" cy="200" r="180" />
+            <circle class="ring ring--task" cx="200" cy="200" r="140" />
+            <circle class="ring ring--system" cx="200" cy="200" r="100" />
+            <circle class="ring ring--current" cx="200" cy="200" r="60" />
+          </g>
 
-        <g class="layer-labels" aria-hidden="true">
-          <text class="layer-label layer-label--organizational">
-            <textPath href="#organizational-path" startOffset="50%" text-anchor="middle">
-              Organizational Context
-            </textPath>
-          </text>
-          <text class="layer-label layer-label--task">
-            <textPath href="#task-path" startOffset="50%" text-anchor="middle">
-              Task Context
-            </textPath>
-          </text>
-          <text class="layer-label layer-label--system">
-            <textPath href="#system-path" startOffset="50%" text-anchor="middle">
-              System Understanding
-            </textPath>
-          </text>
-          <text class="layer-label layer-label--current" x="200" y="207" text-anchor="middle">
-            Current Task
-          </text>
-        </g>
-      </svg>
-      <p class="eyebrow">Context Onion</p>
-      <h1>A design model for AGENTS.md.</h1>
-      <p class="lede">Start at the center and expand outward only as needed.</p>
-      <a class="rfc-link" href="/rfcs/RFC-001-progressive-context-acquisition/">
-        Read RFC-001 <span aria-hidden="true">→</span>
-      </a>
-      <p class="feedback">
-        Feedback? <a href="mailto:hello@contextonion.dev">hello@contextonion.dev</a>
-      </p>
+          <g class="layer-labels" aria-hidden="true">
+            <text class="layer-label layer-label--organizational">
+              <textPath href="#organizational-path" startOffset="50%" text-anchor="middle">
+                Organizational Context
+              </textPath>
+            </text>
+            <text class="layer-label layer-label--task">
+              <textPath href="#task-path" startOffset="50%" text-anchor="middle">
+                Task Context
+              </textPath>
+            </text>
+            <text class="layer-label layer-label--system">
+              <textPath href="#system-path" startOffset="50%" text-anchor="middle">
+                System Understanding
+              </textPath>
+            </text>
+            <text class="layer-label layer-label--current" x="200" y="207" text-anchor="middle">
+              Current Task
+            </text>
+          </g>
+        </svg>
+
+        <p class="eyebrow">Context Onion</p>
+        <h1 id="page-title">A model for progressive context acquisition by engineering agents.</h1>
+        <p class="promise">Reach sufficient context without exploring the whole system first.</p>
+        <p class="lede">Start at the center and expand outward only as needed.</p>
+      </section>
+
+      <section class="layers" aria-labelledby="layers-title">
+        <h2 id="layers-title">The four layers</h2>
+        <ol>
+          <li><strong>Current Task</strong><span>The specific change to make.</span></li>
+          <li><strong>System Understanding</strong><span>Architecture, workflows, dependencies and design intent.</span></li>
+          <li><strong>Task Context</strong><span>Relevant code, tests, configuration and nearby examples.</span></li>
+          <li><strong>Organizational Context</strong><span>Shared standards, RFCs, policies and guidance.</span></li>
+        </ol>
+      </section>
+
+      <section class="router" aria-labelledby="router-title">
+        <h2 id="router-title">AGENTS.md is the repository context router.</h2>
+        <p>
+          It should point the agent to the right knowledge for the task instead of trying to contain all repository,
+          system and organizational context itself.
+        </p>
+      </section>
+
+      <section class="sequence" aria-labelledby="sequence-title">
+        <h2 id="sequence-title">Acquisition sequence</h2>
+        <p class="sequence-line" aria-label="Current Task, then System Understanding, then Task Context, then Organizational Context as applicable">
+          <span>Current Task</span><b aria-hidden="true">→</b><span>System Understanding</span><b aria-hidden="true">→</b><span>Task Context</span><b aria-hidden="true">→</b><span>Organizational Context <em>as applicable</em></span>
+        </p>
+      </section>
+
+      <footer>
+        <a class="rfc-link" href="/rfcs/RFC-001-progressive-context-acquisition/">
+          Read RFC-001 <span aria-hidden="true">→</span>
+        </a>
+        <p class="feedback">
+          Feedback? <a href="mailto:hello@contextonion.dev">hello@contextonion.dev</a>
+        </p>
+      </footer>
     </main>
   </body>
 </html>
@@ -100,18 +132,21 @@ const description = 'An open model for progressive context acquisition by engine
   body {
     min-height: 100vh;
     margin: 0;
-    display: grid;
-    place-items: center;
-    padding: 3rem 0;
+    padding: 4rem 0;
     background:
-      radial-gradient(circle at 50% 40%, rgb(118 58 155 / 24%), transparent 30rem),
+      radial-gradient(circle at 50% 18rem, rgb(118 58 155 / 24%), transparent 30rem),
       #0d0a12;
   }
 
   main {
-    width: min(44rem, calc(100% - 3rem));
+    width: min(52rem, calc(100% - 3rem));
+    margin: 0 auto;
     min-width: 0;
     text-align: center;
+  }
+
+  .hero {
+    margin-bottom: 4.5rem;
   }
 
   .mark {
@@ -179,23 +214,128 @@ const description = 'An open model for progressive context acquisition by engine
 
   h1 {
     margin: 0;
-    font-size: clamp(2.4rem, 10vw, 6rem);
-    line-height: 0.95;
-    letter-spacing: -0.06em;
-    overflow-wrap: anywhere;
+    font-size: clamp(2.5rem, 8vw, 5.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    letter-spacing: -0.025em;
+  }
+
+  .promise {
+    margin: 1.75rem auto 0;
+    max-width: 38rem;
+    color: #f4e9fb;
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    font-weight: 650;
+    line-height: 1.4;
   }
 
   .lede {
+    margin: 0.8rem 0 0;
+    color: #a99eaf;
+    font-size: clamp(1rem, 2.6vw, 1.2rem);
+  }
+
+  .layers,
+  .router,
+  .sequence {
+    padding: 2.25rem 0;
+    border-top: 1px solid rgb(197 138 249 / 16%);
+  }
+
+  .layers ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
     margin: 1.5rem 0 0;
-    color: #c9c0d1;
-    font-size: clamp(1.1rem, 3vw, 1.45rem);
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    counter-reset: layers;
+  }
+
+  .layers li {
+    counter-increment: layers;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.8rem;
+    padding: 1rem;
+    border: 1px solid rgb(197 138 249 / 18%);
+    border-radius: 0.9rem;
+    background: rgb(255 255 255 / 2%);
+  }
+
+  .layers li::before {
+    content: counter(layers);
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid rgb(197 138 249 / 42%);
+    border-radius: 999px;
+    color: #dca9ff;
+    font-size: 0.78rem;
+    font-weight: 750;
+    grid-row: 1 / span 2;
+  }
+
+  .layers strong {
+    color: #f8f3ff;
+    font-size: 0.96rem;
+  }
+
+  .layers span {
+    margin-top: 0.2rem;
+    color: #a99eaf;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .router p,
+  .sequence p {
+    max-width: 42rem;
+    margin: 0 auto;
+    color: #b9aebe;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .sequence-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .sequence-line span {
+    color: #ead7f5;
+  }
+
+  .sequence-line b {
+    color: #8d719d;
+    font-weight: 600;
+  }
+
+  .sequence-line em {
+    color: #91869a;
+    font-size: 0.86em;
+    font-style: normal;
+  }
+
+  footer {
+    padding-top: 2.5rem;
   }
 
   .rfc-link {
     display: inline-flex;
     gap: 0.5rem;
     align-items: center;
-    margin-top: 2rem;
     padding: 0.75rem 1rem;
     border: 1px solid rgb(197 138 249 / 55%);
     border-radius: 999px;
@@ -215,7 +355,8 @@ const description = 'An open model for progressive context acquisition by engine
     transform: translateY(-1px);
   }
 
-  .rfc-link:focus-visible {
+  .rfc-link:focus-visible,
+  .feedback a:focus-visible {
     outline: 2px solid #f2b8ff;
     outline-offset: 4px;
   }
@@ -235,14 +376,13 @@ const description = 'An open model for progressive context acquisition by engine
     color: #ead7f5;
   }
 
-  .feedback a:focus-visible {
-    outline: 2px solid #f2b8ff;
-    outline-offset: 3px;
-  }
-
-  @media (max-width: 36rem) {
+  @media (max-width: 42rem) {
     body {
-      padding: 2rem 0;
+      padding: 2.5rem 0;
+    }
+
+    .hero {
+      margin-bottom: 3rem;
     }
 
     .mark {
@@ -250,7 +390,11 @@ const description = 'An open model for progressive context acquisition by engine
     }
 
     h1 {
-      font-size: clamp(2.35rem, 11vw, 3.2rem);
+      font-size: clamp(2.35rem, 11vw, 3.5rem);
+    }
+
+    .layers ol {
+      grid-template-columns: 1fr;
     }
 
     .layer-label {
