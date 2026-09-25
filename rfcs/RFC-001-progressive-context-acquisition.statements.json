@@ -1,0 +1,325 @@
+{
+  "rfc": "001",
+  "id": "RFC-001",
+  "title": "Progressive Context Acquisition for Engineering Agents",
+  "projectStatus": "Draft",
+  "documentRole": "Community Draft Specification",
+  "aaifTrack": "Not submitted",
+  "domain": "context-acquisition",
+  "authoritativeSource": "rfcs/RFC-001-progressive-context-acquisition.md",
+  "href": "/rfcs/RFC-001-progressive-context-acquisition/",
+  "projectionHref": "/rfcs/RFC-001-progressive-context-acquisition.statements.json",
+  "description": "Machine-readable projection of capitalized BCP 14 requirements from RFC-001. Markdown remains authoritative; this JSON supports discovery, filtering, and enforcement.",
+  "statements": [
+    {
+      "slug": "aaif-claims-require-explicit-decision",
+      "section": ["Status"],
+      "level": "MUST NOT",
+      "text": "Claims of AAIF endorsement, affiliation, or foundation hosting MUST NOT be made without an explicit AAIF decision.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#status",
+      "audience": ["publisher", "adopter"],
+      "conformanceLevel": null,
+      "layer": null
+    },
+    {
+      "slug": "adopters-may-treat-capitalized-requirements-as-normative",
+      "section": ["Status"],
+      "level": "MAY",
+      "text": "Adopters who opt in MAY treat capitalized requirements as normative for their repositories and organizations.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#status",
+      "audience": ["adopter"],
+      "conformanceLevel": null,
+      "layer": null
+    },
+    {
+      "slug": "routers-should-implement-progressive-acquisition-model",
+      "section": ["Relationship to AAIF and AGENTS.md"],
+      "level": "SHOULD",
+      "text": "AGENTS.md routers SHOULD implement the Context Onion progressive acquisition model.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#relationship-to-aaif-and-agentsmd",
+      "audience": ["repository", "agent"],
+      "conformanceLevel": 2,
+      "layer": null
+    },
+    {
+      "slug": "preserve-task-intended-outcome",
+      "section": ["Context Onion model", "Current Task"],
+      "level": "SHOULD",
+      "text": "An agent SHOULD preserve the task's intended outcome while acquiring context.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#1-current-task",
+      "audience": ["agent"],
+      "conformanceLevel": 2,
+      "layer": "Current Task"
+    },
+    {
+      "slug": "do-not-redefine-task-around-first-path",
+      "section": ["Context Onion model", "Current Task"],
+      "level": "SHOULD NOT",
+      "text": "An agent SHOULD NOT redefine the task around the first implementation path it discovers.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#1-current-task",
+      "audience": ["agent"],
+      "conformanceLevel": 2,
+      "layer": "Current Task"
+    },
+    {
+      "slug": "acquire-system-understanding-before-expensive-exploration",
+      "section": ["Context Onion model", "System Understanding"],
+      "level": "SHOULD",
+      "text": "For non-trivial behavioral or cross-component changes, an agent SHOULD acquire sufficient system understanding before expensive implementation exploration.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#2-system-understanding",
+      "audience": ["agent"],
+      "conformanceLevel": 2,
+      "layer": "System Understanding"
+    },
+    {
+      "slug": "tool-output-must-not-replace-authoritative-policy",
+      "section": ["Context Onion model", "Organizational Context"],
+      "level": "MUST NOT",
+      "text": "Tool output or a local summary MUST NOT be treated as the authoritative source of organizational policy when the policy actually lives in an RFC, standard, or governance artifact.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#4-organizational-context",
+      "audience": ["agent", "repository", "organization"],
+      "conformanceLevel": 1,
+      "layer": "Organizational Context"
+    },
+    {
+      "slug": "acquire-context-progressively",
+      "section": ["Acquisition sequence"],
+      "level": "SHOULD",
+      "text": "Agents SHOULD acquire context progressively rather than broadly scanning by default.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#acquisition-sequence",
+      "audience": ["agent"],
+      "conformanceLevel": 2,
+      "layer": null
+    },
+    {
+      "slug": "acquire-system-understanding-when-task-depends-on-system-behavior",
+      "section": ["Acquisition sequence"],
+      "level": "SHOULD",
+      "text": "Agents SHOULD acquire sufficient System Understanding before expensive implementation exploration when a task depends on system behavior.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#acquisition-sequence",
+      "audience": ["agent"],
+      "conformanceLevel": 2,
+      "layer": "System Understanding"
+    },
+    {
+      "slug": "stop-expanding-context-when-sufficient",
+      "section": ["Acquisition sequence"],
+      "level": "SHOULD",
+      "text": "Agents SHOULD stop expanding context once sufficient reliable context has been reached.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#acquisition-sequence",
+      "audience": ["agent"],
+      "conformanceLevel": 2,
+      "layer": null
+    },
+    {
+      "slug": "repository-may-use-agents-md-as-router",
+      "section": ["AGENTS.md as repository context router"],
+      "level": "MAY",
+      "text": "A repository MAY use AGENTS.md as its repository-facing context router across the layers.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#agentsmd-as-repository-context-router",
+      "audience": ["repository"],
+      "conformanceLevel": 1,
+      "layer": null
+    },
+    {
+      "slug": "repositories-must-expose-local-constraints",
+      "section": ["AGENTS.md as repository context router"],
+      "level": "MUST",
+      "text": "Repositories MUST expose applicable local constraints to agents.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#agentsmd-as-repository-context-router",
+      "audience": ["repository"],
+      "conformanceLevel": 1,
+      "layer": null
+    },
+    {
+      "slug": "repositories-should-make-verification-explicit",
+      "section": ["AGENTS.md as repository context router"],
+      "level": "SHOULD",
+      "text": "Repositories SHOULD make verification requirements explicit.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#agentsmd-as-repository-context-router",
+      "audience": ["repository"],
+      "conformanceLevel": 1,
+      "layer": null
+    },
+    {
+      "slug": "repositories-should-route-not-duplicate-authoritative-knowledge",
+      "section": ["AGENTS.md as repository context router"],
+      "level": "SHOULD",
+      "text": "Repositories SHOULD route agents to authoritative system and organizational knowledge instead of duplicating that knowledge.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#agentsmd-as-repository-context-router",
+      "audience": ["repository"],
+      "conformanceLevel": 1,
+      "layer": null
+    },
+    {
+      "slug": "verification-mechanisms-should-not-be-policy-sources",
+      "section": ["Organizational knowledge and RFCs"],
+      "level": "SHOULD",
+      "text": "Verification mechanisms SHOULD be treated as evidence or enforcement mechanisms rather than policy sources.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#organizational-knowledge-and-rfcs",
+      "audience": ["organization", "agent"],
+      "conformanceLevel": 3,
+      "layer": "Organizational Context"
+    },
+    {
+      "slug": "organizations-may-expose-context-through-mechanisms",
+      "section": ["Context acquisition mechanisms"],
+      "level": "MAY",
+      "text": "Organizations MAY expose context through mechanisms such as MCP servers, documentation systems, service catalogs, search, retrieval systems, and equivalent interfaces.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#context-acquisition-mechanisms",
+      "audience": ["organization"],
+      "conformanceLevel": null,
+      "layer": null
+    },
+    {
+      "slug": "level1-should-provide-agents-md-or-equivalent-router",
+      "section": ["Conformance", "Level 1 — Router"],
+      "level": "SHOULD",
+      "text": "A conforming repository SHOULD provide an AGENTS.md or equivalent router that orients agents to repository commands, system layout, conventions, boundaries, and verification.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#level-1--router",
+      "audience": ["repository"],
+      "conformanceLevel": 1,
+      "layer": null
+    },
+    {
+      "slug": "level2-must-document-progressive-acquisition-expectation",
+      "section": ["Conformance", "Level 2 — Progressive acquisition"],
+      "level": "MUST",
+      "text": "A conforming repository or agent workflow MUST document a progressive context-acquisition expectation for non-trivial behavioral or cross-component work.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#level-2--progressive-acquisition",
+      "audience": ["repository", "organization"],
+      "conformanceLevel": 2,
+      "layer": null
+    },
+    {
+      "slug": "level2-may-use-short-path-for-local-changes",
+      "section": ["Conformance", "Level 2 — Progressive acquisition"],
+      "level": "MAY",
+      "text": "A conforming repository or agent workflow MAY use the shorter Current Task → Task Context → Verification path for demonstrably local changes.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#level-2--progressive-acquisition",
+      "audience": ["agent", "repository"],
+      "conformanceLevel": 2,
+      "layer": null
+    },
+    {
+      "slug": "level3-must-keep-policy-in-durable-artifacts",
+      "section": ["Conformance", "Level 3 — Organizational wiring"],
+      "level": "MUST",
+      "text": "A conforming organization MUST keep applicable policy in durable artifacts with stable identifiers.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#level-3--organizational-wiring",
+      "audience": ["organization"],
+      "conformanceLevel": 3,
+      "layer": "Organizational Context"
+    },
+    {
+      "slug": "level3-should-cite-stable-identifiers-from-routers",
+      "section": ["Conformance", "Level 3 — Organizational wiring"],
+      "level": "SHOULD",
+      "text": "A conforming organization SHOULD cite stable policy identifiers from repository routers rather than copying policy text.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#level-3--organizational-wiring",
+      "audience": ["organization", "repository"],
+      "conformanceLevel": 3,
+      "layer": "Organizational Context"
+    },
+    {
+      "slug": "level3-may-fail-review-for-cited-must-violations",
+      "section": ["Conformance", "Level 3 — Organizational wiring"],
+      "level": "MAY",
+      "text": "A conforming organization MAY fail review or verification when a change violates a cited MUST requirement.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#level-3--organizational-wiring",
+      "audience": ["organization"],
+      "conformanceLevel": 3,
+      "layer": null
+    },
+    {
+      "slug": "level3-must-treat-verification-as-evidence-not-policy",
+      "section": ["Conformance", "Level 3 — Organizational wiring"],
+      "level": "MUST",
+      "text": "A conforming organization MUST treat verification and review mechanisms as evidence or enforcement, not as the policy source, unless a mechanism is explicitly designated as authoritative.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#level-3--organizational-wiring",
+      "audience": ["organization"],
+      "conformanceLevel": 3,
+      "layer": "Organizational Context"
+    },
+    {
+      "slug": "adopters-may-publish-conformance-level",
+      "section": ["Conformance"],
+      "level": "MAY",
+      "text": "Adopters MAY publish which conformance level they target.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#conformance",
+      "audience": ["adopter"],
+      "conformanceLevel": null,
+      "layer": null
+    },
+    {
+      "slug": "conformance-claims-should-name-the-level",
+      "section": ["Conformance"],
+      "level": "SHOULD",
+      "text": "Claims of conformance SHOULD name the level.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#conformance",
+      "audience": ["adopter"],
+      "conformanceLevel": null,
+      "layer": null
+    },
+    {
+      "slug": "projection-consumers-should-load-statements-before-full-rfc",
+      "section": ["JSON projection"],
+      "level": "SHOULD",
+      "text": "Agents and reviewers SHOULD load the statement list first, then fetch full RFC sections only when additional context is required.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#json-projection",
+      "audience": ["agent", "organization"],
+      "conformanceLevel": 3,
+      "layer": null
+    },
+    {
+      "slug": "statement-slugs-must-remain-stable",
+      "section": ["JSON projection"],
+      "level": "MUST",
+      "text": "Stable statement slug values MUST remain unchanged when statement text is clarified.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#json-projection",
+      "audience": ["publisher"],
+      "conformanceLevel": null,
+      "layer": null
+    },
+    {
+      "slug": "retired-requirements-should-not-reuse-slugs",
+      "section": ["JSON projection"],
+      "level": "SHOULD",
+      "text": "Retiring a requirement SHOULD happen by removing or superseding the statement rather than silently reusing its slug.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#json-projection",
+      "audience": ["publisher"],
+      "conformanceLevel": null,
+      "layer": null
+    },
+    {
+      "slug": "level3-may-project-organizational-rfcs-as-statements",
+      "section": ["JSON projection"],
+      "level": "MAY",
+      "text": "Adopters at conformance Level 3 MAY project their own organizational RFCs into the same statement shape and cite those slugs from AGENTS.md routers and verification systems.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#json-projection",
+      "audience": ["organization"],
+      "conformanceLevel": 3,
+      "layer": "Organizational Context"
+    },
+    {
+      "slug": "projection-must-not-override-markdown-authority",
+      "section": ["JSON projection"],
+      "level": "MUST NOT",
+      "text": "The JSON projection MUST NOT be treated as a second policy authority when it diverges from the Markdown.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#json-projection",
+      "audience": ["agent", "organization", "adopter"],
+      "conformanceLevel": 3,
+      "layer": null
+    },
+    {
+      "slug": "divergent-projection-must-be-corrected",
+      "section": ["JSON projection"],
+      "level": "MUST",
+      "text": "If divergence between the JSON projection and Markdown is discovered, the Markdown wins and the JSON MUST be corrected.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#json-projection",
+      "audience": ["publisher"],
+      "conformanceLevel": null,
+      "layer": null
+    }
+  ]
+}
