@@ -2,7 +2,23 @@
 
 ## Status
 
-Draft
+| Field | Value |
+| --- | --- |
+| Project status | Draft |
+| Document role | Community Draft Specification |
+| AAIF track | Not submitted |
+
+**Project status** is Context Onion's internal lifecycle (`Draft`, `Accepted`, or `Superseded`). The maintainer decides when a Draft has enough discussion and evidence to become Accepted as this project's reference guidance. See [`rfcs/README.md`](README.md).
+
+**Document role** means this RFC is implementable today. Adopters who opt in MAY treat its capitalized requirements as normative for their repositories and organizations. Project acceptance does not imply AAIF endorsement or foundation hosting.
+
+**AAIF track** records ecosystem-level progress with the [Agentic AI Foundation](https://aaif.io/):
+
+- **Not submitted** — no AAIF project proposal has been filed.
+- **Under review** — a proposal is before the AAIF Technical Committee.
+- **Accepted** — AAIF has accepted the work for foundation stewardship or ecosystem recognition; cite the decision.
+
+Claims of AAIF endorsement, affiliation, or foundation hosting MUST NOT be made without an explicit AAIF decision.
 
 ## Authors
 
@@ -24,6 +40,42 @@ The model is intentionally different from “read all relevant code first.” It
 `AGENTS.md` is configured as a repository context router across four knowledge layers. Likewise, MCP servers, search, code intelligence, catalogs, documentation systems, retrieval systems, and verification systems are mechanisms that help acquire or evaluate context; they are not layers in the model.
 
 The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** in this document are to be interpreted as described by BCP 14 when, and only when, they appear in all capitals.
+
+## Relationship to AAIF and AGENTS.md
+
+`AGENTS.md` is an [AAIF](https://aaif.io/) project: a simple, open format for repository-facing agent instructions. Context Onion does not redefine, fork, or replace that format.
+
+The responsibilities remain separate:
+
+```text
+AGENTS.md (AAIF)
+    → repository routing interface for agent instructions
+
+Context Onion (this RFC)
+    → progressive acquisition model those routers SHOULD implement
+
+Organizational standards / RFCs / codex rules
+    → policy, intent, mandatory requirements, and exceptions
+
+Verification and review
+    → evidence or enforcement; not the policy source
+```
+
+This specification acknowledges `AGENTS.md` as an AAIF project and treats AAIF as the appropriate venue for ecosystem-level acceptance of agent context conventions that sit beside `AGENTS.md`. Until such acceptance, Context Onion maintains this document as a voluntary, implementable profile.
+
+Authority today:
+
+- **Format authority for `AGENTS.md`** remains with the AAIF `AGENTS.md` project.
+- **Model authority for Context Onion** remains with Context Onion maintainers until an AAIF decision changes that.
+- **Policy authority** remains with each adopting organization for its own standards.
+- **Enforcement authority** remains with each adopting organization's review and verification systems.
+
+Intended path to ecosystem acceptance:
+
+1. Keep a clear scope boundary with `AGENTS.md` (router vs acquisition model).
+2. Coordinate with `AGENTS.md` maintainers on that boundary before any AAIF submission.
+3. Collect independent adoption evidence.
+4. Submit through the [AAIF project proposal process](https://aaif.io/submit-a-project) when Growth or Impact criteria are met.
 
 ## Motivation
 
@@ -54,11 +106,14 @@ RFC-001 aims to:
 - preserve authoritative knowledge in its appropriate source; and
 - keep the model independent from specific vendors and tools.
 
+
+
 ## Non-goals
 
 RFC-001 does not:
 
 - mandate a specific `AGENTS.md` schema;
+- redefine or replace the `AGENTS.md` format;
 - mandate MCP;
 - mandate any specific context tool;
 - define a universal repository layout;
@@ -66,8 +121,11 @@ RFC-001 does not:
 - replace architecture documentation;
 - replace organizational standards;
 - define a universal context retrieval implementation;
-- define a fixed measure of context acquisition cost; or
-- claim that every task requires every layer.
+- define a fixed measure of context acquisition cost;
+- claim that every task requires every layer; or
+- claim AAIF endorsement, affiliation, or foundation hosting without an explicit AAIF decision.
+
+
 
 ## Context Onion model
 
@@ -181,32 +239,41 @@ A recommended reference structure is:
 
 ```text
 AGENTS.md
-├── Orientation
-├── System-understanding routing
-├── Task-context routing
-├── Constraints
-├── Organizational-context routing
+├── Repository
+├── System
+├── Conventions
+├── Boundaries
 ├── Verification
-└── Context-acquisition policy
+└── Context acquisition
 ```
 
 This structure is illustrative and optional. Context Onion does not redefine or replace the `AGENTS.md` format. `AGENTS.md` should act primarily as a routing interface, not as a knowledge dump. Authoritative architecture, policy, and organizational guidance should normally remain in their sources and be referenced from the router.
 
-A recommended context-acquisition policy is:
+These sections map to the Context Onion layers without becoming layers themselves:
+
+- **Repository** orients the agent to the local environment and common commands.
+- **System** routes to architecture, workflows, ownership, and implementation layout.
+- **Conventions** routes to coding patterns and applicable organizational standards.
+- **Boundaries** exposes local constraints that agents MUST respect.
+- **Verification** makes success checks explicit.
+- **Context acquisition** states when to expand context progressively.
+
+A recommended context-acquisition section is:
 
 ```markdown
-## Context-acquisition policy
+## Context acquisition
 
 For behavioral or cross-component changes:
 
-1. Identify the affected system or workflow.
-2. Acquire enough system understanding to know where the behavior belongs.
-3. Locate the relevant implementation, tests, and configuration.
-4. Resolve applicable organizational standards.
-5. Expand further only when uncertainty remains.
+1. Understand the affected workflow before changing implementation.
+2. Locate the relevant source, tests, configuration, and callers.
+3. Resolve applicable standards and constraints.
+4. Expand further only when uncertainty remains.
 
 For trivial or isolated changes, agents may shortcut this sequence when broader system understanding is unnecessary.
 ```
+
+
 
 ## Nested AGENTS.md in monorepos
 
@@ -221,25 +288,25 @@ Organization
 
 The root file provides broad repository defaults and routing. Nested files specialize those instructions for their subtree. The closer an `AGENTS.md` file is to the implementation, the more concrete and operational it should become.
 
-Nested files should add or specialize instructions rather than duplicate inherited knowledge unnecessarily. They reduce the context radius by directing agents to the architecture, implementation, constraints, organizational standards, and verification relevant to a bounded area.
+Nested files should add or specialize instructions rather than duplicate inherited knowledge unnecessarily. They reduce the context radius by directing agents to the system layout, conventions, boundaries, and verification relevant to a bounded area.
 
 For example:
 
 ```text
 repository/
-├── AGENTS.md                 # repository orientation and shared constraints
+├── AGENTS.md                 # repository defaults and shared boundaries
 ├── docs/
 │   └── architecture/
 ├── services/
 │   ├── billing/
-│   │   ├── AGENTS.md         # billing workflows, ownership, tests, standards
+│   │   ├── AGENTS.md         # billing system, conventions, tests, standards
 │   │   └── src/
 │   └── notifications/
 │       ├── AGENTS.md         # notification flows, providers, tests, standards
 │       └── src/
 └── packages/
     └── shared/
-        └── AGENTS.md         # shared-library compatibility constraints
+        └── AGENTS.md         # shared-library compatibility boundaries
 ```
 
 An agent working in `services/billing/` follows repository-wide defaults and the billing-specific router. The Context Onion remains the same model at both scopes.
@@ -328,61 +395,52 @@ The following fictional example is concise by design. It demonstrates routing ra
 ```markdown
 # AGENTS.md
 
-## Orientation
+## Repository
 
-- Runtime: Node.js 22.
-- Install: `npm install`.
-- Development: `npm run dev`.
-- Production build: `npm run build`.
+- Runtime: Go 1.23
+- Test: `go test ./...`
+- Lint: `golangci-lint run`
 
-## System-understanding routing
+## System
 
-- Architecture and component boundaries: `docs/architecture/`.
-- User and data workflows: `docs/workflows/`.
-- Review the relevant workflow before cross-component behavioral changes.
+- Services live in `cmd/`, one main package per binary.
+- Shared packages live in `internal/`.
+- Tests sit beside source: `foo.go` → `foo_test.go`.
+- Architecture: `docs/architecture.md`
 
-## Task-context routing
+## Conventions
 
-- Application source: `src/`.
-- Unit tests: `tests/unit/`.
-- Integration tests: `tests/integration/`.
-- Runtime configuration: `config/`.
-- Prefer the nearest existing implementation and test pattern.
+- Prefer table-driven tests with the standard `testing` package.
+- Follow the internal REST API conventions: `docs/api-rest.md`.
+- Relevant standards: RFC 021, RFC 042.
 
-## Constraints
+## Boundaries
 
-- Preserve public API compatibility unless the task explicitly changes it.
-- Do not edit generated files under `generated/`.
-- Keep credentials and private data out of source control.
-
-## Organizational-context routing
-
-- Engineering standards: https://standards.example.com/engineering/
-- API standard: https://standards.example.com/api/
-- Security standard: https://standards.example.com/security/
-- Testing standard: https://standards.example.com/testing/
+- Do not edit generated files in `gen/`.
+- Do not introduce background jobs without updating `config.json`.
 
 ## Verification
 
-- Formatting: `npm run format:check`.
-- Unit tests: `npm test`.
-- Integration tests: `npm run test:integration`.
-- Production build: `npm run build`.
+Before finishing:
 
-## Context-acquisition policy
+- Run `go test ./...`.
+- Run `golangci-lint run`.
+
+## Context acquisition
 
 For behavioral or cross-component changes:
 
-1. Identify the affected system or workflow.
-2. Acquire enough system understanding to know where the behavior belongs.
-3. Locate the relevant implementation, tests, and configuration.
-4. Resolve applicable organizational standards.
-5. Expand further only when uncertainty remains.
-
-For trivial or isolated changes, agents may shortcut this sequence when broader system understanding is unnecessary.
+1. Understand the affected workflow before changing implementation.
+2. Locate the relevant source, tests, configuration, and callers.
+3. Resolve applicable standards and constraints.
+4. Expand further only when uncertainty remains.
 ```
 
+
+
 ## Examples
+
+
 
 ### Example 1: trivial local change
 
@@ -412,7 +470,7 @@ The agent first reads the order workflow and component boundaries. That orientat
 
 ### Example 3: monorepo with nested AGENTS.md
 
-A repository root routes agents to shared architecture and common constraints. `services/catalog/AGENTS.md` adds catalog-specific domain documentation, source locations, ownership, and integration tests.
+A repository root routes agents to shared system layout, conventions, and boundaries. `services/catalog/AGENTS.md` adds catalog-specific domain documentation, source locations, ownership, and integration tests.
 
 ```text
 Root AGENTS.md
@@ -444,22 +502,57 @@ The separation is explicit:
 
 The agent uses the router to find the authoritative API standard, implements the task, and produces evidence through contract tests and policy checks. The access and verification mechanisms do not become the policy source.
 
+## Conformance
+
+An adopter opts in by declaring which conformance level applies. Levels are cumulative: each level includes the requirements of the levels below it.
+
+### Level 1 — Router
+
+A conforming repository:
+
+- MUST expose applicable local constraints to agents;
+- SHOULD provide an `AGENTS.md` (or equivalent router) that orients agents to repository commands, system layout, conventions, boundaries, and verification;
+- SHOULD route agents to authoritative system and organizational knowledge instead of duplicating that knowledge; and
+- MUST NOT treat tool output or a local summary as the authoritative source of organizational policy when the policy lives elsewhere.
+
+### Level 2 — Progressive acquisition
+
+A conforming repository or agent workflow:
+
+- MUST document a progressive context-acquisition expectation for non-trivial behavioral or cross-component work;
+- SHOULD acquire sufficient System Understanding before expensive implementation exploration when the task depends on system behavior;
+- SHOULD stop expanding context once sufficient reliable context has been reached; and
+- MAY use the shorter Current Task → Task Context → Verification path for demonstrably local changes.
+
+### Level 3 — Organizational wiring
+
+A conforming organization:
+
+- MUST keep applicable policy in durable artifacts (RFCs, standards, codex rules, or equivalent) with stable identifiers;
+- SHOULD cite those identifiers from repository routers rather than copying policy text;
+- MAY fail review or verification when a change violates a cited MUST requirement; and
+- MUST treat verification and review mechanisms as evidence or enforcement, not as the policy source, unless a mechanism is explicitly designated as authoritative.
+
+Adopters MAY publish which level they target. Claims of conformance SHOULD name the level. Claims of AAIF endorsement remain prohibited unless the AAIF track is **Accepted** and the decision is cited.
+
 ## Adoption guidance
 
-Adoption should be incremental:
+Adoption should be incremental and may stop at any conformance level:
 
 1. Identify existing sources for each context layer.
 2. Avoid duplicating authoritative knowledge.
-3. Create or improve `AGENTS.md` as a routing interface where useful.
-4. Define explicit repository constraints.
+3. Create or improve `AGENTS.md` as a routing interface (Level 1).
+4. Define explicit repository boundaries.
 5. Define verification expectations.
-6. Route to applicable organizational standards.
-7. Expose context through suitable acquisition mechanisms where useful.
-8. Test the acquisition path with real engineering tasks.
-9. Observe where agents get lost or expand context unnecessarily.
-10. Improve the weakest route.
+6. Add an explicit progressive acquisition section (Level 2).
+7. Route conventions and applicable organizational standards with stable identifiers (Level 3).
+8. Expose context through suitable acquisition mechanisms where useful.
+9. Wire review or verification to cite those identifiers where useful (Level 3).
+10. Test the acquisition path with real engineering tasks.
+11. Observe where agents get lost or expand context unnecessarily.
+12. Improve the weakest route.
 
-Early adoption should prefer a usable route for common work over exhaustive documentation. Evidence from real tasks should guide later refinement.
+Early adoption should prefer a usable Level 1 route for common work over exhaustive documentation. Evidence from real tasks should guide later refinement and any future AAIF submission.
 
 ## Open questions
 
@@ -475,6 +568,8 @@ These questions remain open for experimentation and evidence. RFC-001 does not p
 
 ## References
 
+- [Agentic AI Foundation (AAIF)](https://aaif.io/)
+- [AAIF: Submit a Project](https://aaif.io/submit-a-project)
 - [AGENTS.md](https://agents.md/)
 - [Context Onion](https://contextonion.dev)
 - [Context Onion GitHub organization](https://github.com/contextonion)
@@ -482,4 +577,4 @@ These questions remain open for experimentation and evidence. RFC-001 does not p
 - [RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](https://www.rfc-editor.org/rfc/rfc2119)
 - [RFC 8174: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words](https://www.rfc-editor.org/rfc/rfc8174)
 
-These references provide background or project locations. Their inclusion does not imply endorsement of Context Onion by any external organization.
+These references provide background or project locations. Their inclusion does not imply endorsement of Context Onion by AAIF or any other external organization.
