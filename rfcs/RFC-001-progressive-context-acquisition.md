@@ -535,6 +535,66 @@ A conforming organization:
 
 Adopters MAY publish which level they target. Claims of conformance SHOULD name the level. Claims of AAIF endorsement remain prohibited unless the AAIF track is **Accepted** and the decision is cited.
 
+## JSON projection
+
+Markdown remains the authoritative RFC text. To support discovery, filtering, and enforcement without loading the full document into an agent context window, RFC-001 publishes a machine-readable **JSON projection** of its capitalized BCP 14 requirements.
+
+Canonical file in the repository:
+
+```text
+rfcs/RFC-001-progressive-context-acquisition.statements.json
+```
+
+Published URL:
+
+```text
+https://contextonion.dev/rfcs/RFC-001-progressive-context-acquisition.statements.json
+```
+
+The projection follows the same role as an engineering-codex statement extract: agents and reviewers SHOULD load the statement list first, then fetch full RFC sections only when additional context is required. Stable `slug` values MUST remain unchanged when statement text is clarified; retiring a requirement SHOULD happen by removing or superseding the statement rather than silently reusing its slug.
+
+Illustrative shape:
+
+```json
+{
+  "rfc": "001",
+  "id": "RFC-001",
+  "title": "Progressive Context Acquisition for Engineering Agents",
+  "projectStatus": "Draft",
+  "documentRole": "Community Draft Specification",
+  "aaifTrack": "Not submitted",
+  "domain": "context-acquisition",
+  "authoritativeSource": "rfcs/RFC-001-progressive-context-acquisition.md",
+  "statements": [
+    {
+      "slug": "repositories-must-expose-local-constraints",
+      "section": ["AGENTS.md as repository context router"],
+      "level": "MUST",
+      "text": "Repositories MUST expose applicable local constraints to agents.",
+      "href": "/rfcs/RFC-001-progressive-context-acquisition/#agentsmd-as-repository-context-router",
+      "audience": ["repository"],
+      "conformanceLevel": 1,
+      "layer": null
+    }
+  ]
+}
+```
+
+Field guidance:
+
+| Field | Purpose |
+| --- | --- |
+| `slug` | Stable statement id for citations, exceptions, and review findings |
+| `section` | Heading path within the authoritative Markdown |
+| `level` | `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, or `MAY` |
+| `text` | Compact requirement text |
+| `href` | Link to the rendered section for human or agent follow-up |
+| `audience` | Who the requirement primarily binds (`agent`, `repository`, `organization`, `adopter`, `publisher`) |
+| `conformanceLevel` | `1`, `2`, `3`, or `null` when the statement is cross-cutting |
+| `layer` | Optional Context Onion layer name when the statement is layer-specific |
+
+Adopters at conformance Level 3 MAY project their own organizational RFCs into the same statement shape and cite those slugs from `AGENTS.md` routers and verification systems. The projection is an access and enforcement aid; it MUST NOT be treated as a second policy authority when it diverges from the Markdown. If divergence is discovered, the Markdown wins and the JSON MUST be corrected.
+
 ## Adoption guidance
 
 Adoption should be incremental and may stop at any conformance level:
@@ -559,7 +619,7 @@ Early adoption should prefer a usable Level 1 route for common work over exhaust
 - How should sufficient context be measured consistently?
 - How should agents signal that they need to expand context?
 - How should conflicting nested instructions be resolved across tools?
-- How should organizations expose standards in a vendor-neutral way?
+- How should organizations version and diff JSON projections as RFCs evolve?
 - What evidence demonstrates reduced human review burden?
 - How should context freshness be represented?
 - How should agents distinguish authoritative context from inferred context?
@@ -576,5 +636,6 @@ These questions remain open for experimentation and evidence. RFC-001 does not p
 - [Context Onion canonical repository](https://github.com/contextonion/contextonion)
 - [RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](https://www.rfc-editor.org/rfc/rfc2119)
 - [RFC 8174: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words](https://www.rfc-editor.org/rfc/rfc8174)
+- [How Cloudflare enforces engineering standards using AI](https://blog.cloudflare.com/engineering-standards-enforcement/) — informative prior art for JSON statement projections used by review agents
 
-These references provide background or project locations. Their inclusion does not imply endorsement of Context Onion by AAIF or any other external organization.
+These references provide background or project locations. Their inclusion does not imply endorsement of Context Onion by AAIF, Cloudflare, or any other external organization.

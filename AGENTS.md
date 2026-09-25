@@ -14,6 +14,7 @@ Begin with `README.md` for the project overview.
 ## System
 
 - Model, terminology, and acquisition flow: `rfcs/RFC-001-progressive-context-acquisition.md`.
+- Machine-readable MUST/SHOULD projection: `rfcs/RFC-001-progressive-context-acquisition.statements.json` (published at `/rfcs/RFC-001-progressive-context-acquisition.statements.json`).
 - RFC lifecycle and index: `rfcs/README.md`.
 - Publishing topology and Cloudflare workflow: `docs/deployment.md`.
 - Project roles and decision-making: `GOVERNANCE.md`.
@@ -33,6 +34,7 @@ Read the relevant source before changing model behavior, terminology, governance
 ## Boundaries
 
 - Keep RFC Markdown authoritative; do not duplicate policy into Astro pages or this file.
+- Keep `rfcs/*.statements.json` projections aligned with capitalized requirements in their RFC Markdown.
 - Update `rfcs/README.md` when an RFC is added or its status changes.
 - Keep claims vendor-neutral and supported by evidence.
 - Do not commit generated `dist/` output or secrets.

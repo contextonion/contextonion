@@ -12,6 +12,7 @@ Contributors are encouraged to propose changes and provide feedback through issu
 - **Context Onion model authority** belongs to this project's maintainer until an explicit AAIF decision changes that for ecosystem-level stewardship.
 - **AAIF** is the intended venue for ecosystem-level acceptance of agent context conventions that sit beside `AGENTS.md`. The AAIF track on each RFC records that progress separately from project status.
 - **Organizational policy and enforcement** remain with each adopter.
+- **JSON projections** of RFC requirements are discovery and enforcement aids. Authoritative policy remains the RFC Markdown; projections MUST be corrected if they diverge.
 
 This project does not currently claim AAIF affiliation, endorsement, or foundation hosting. Any future AAIF submission should follow the [AAIF project proposal process](https://aaif.io/submit-a-project), coordinate the scope boundary with `AGENTS.md` maintainers, and update the RFC AAIF track only when the proposal state actually changes.
 

@@ -20,6 +20,6 @@ A Community Draft Specification may be fully adoptable while still Draft and whi
 
 ## Index
 
-- [RFC-001: Progressive Context Acquisition for Engineering Agents](RFC-001-progressive-context-acquisition.md) — **Draft** · AAIF track: **Not submitted**
+- [RFC-001: Progressive Context Acquisition for Engineering Agents](RFC-001-progressive-context-acquisition.md) — **Draft** · AAIF track: **Not submitted** · [JSON projection](RFC-001-progressive-context-acquisition.statements.json)
 
 Proposals and feedback are welcome through issues and pull requests in the [canonical repository](https://github.com/contextonion/contextonion). See [CONTRIBUTING.md](../CONTRIBUTING.md) for the lightweight contribution process.
